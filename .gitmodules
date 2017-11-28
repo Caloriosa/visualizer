@@ -1,0 +1,3 @@
+[submodule "modules/rest-dto"]
+	path = modules/rest-dto
+	url = git@github.com:Caloriosa/rest-dto-node.git
