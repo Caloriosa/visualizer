@@ -2,20 +2,32 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
+var session = require('express-session')
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 var lessMiddleware = require('less-middleware');
 var log4js = require('log4js');
+var twigMarkdown = require('twig-markdown');
+var twig = require('twig');
 
 const { Client } = require("@caloriosa/rest-dto");
 
 var index = require('./routes/index');
 var user = require('./routes/user');
+var login = require('./routes/login');
 
 var accessLogger = log4js.getLogger("Access");
 var app = express();
 var client = new Client({
   url: process.env.SERVICE_URL || "http://10.0.0.143:8080"
 });
+var sessOptions = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+};
+
+twig.extend(twigMarkdown);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +38,9 @@ app.set('view engine', 'twig');
 app.use(log4js.connectLogger(accessLogger, {level: 'auto', format: ':method :url :status :response-time ms (:remote-addr)'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
+app.use(session(sessOptions))
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
@@ -39,6 +53,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/user', user);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
