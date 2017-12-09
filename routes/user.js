@@ -3,7 +3,6 @@ const { UserService, User } = require("@caloriosa/rest-dto");
 var express = require('express');
 
 var router = express.Router();
-//var client = require("../dto");
 
 /* GET users listing. */
 router.get('/:userLogin', function(req, res, next) {
