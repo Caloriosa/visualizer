@@ -1,29 +1,19 @@
 {
-  "name": "@caloriosa/web-ui",
-  "version": "0.1.0",
-  "description": "Web visualization for reports and graphs of measures, world-wide map of devices",
-  "main": "index.js",
+  "name": "web-ui",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Caloriosa/web-ui.git"
-  },
-  "keywords": [
-    "caloriosa",
-    "web",
-    "express",
-    "measurement",
-    "weather"
-  ],
-  "author": "Caloriosa",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Caloriosa/web-ui/issues"
-  },
-  "homepage": "https://github.com/Caloriosa/web-ui#readme",
   "dependencies": {
-    "rest-dto": "file:modules/rest-dto"
+    "@caloriosa/rest-dto": "file:modules/rest-dto",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "less-middleware": "~2.2.1",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
+    "twig": "^0.10.3"
   }
 }
