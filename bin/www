@@ -7,11 +7,26 @@
 var app = require('../app');
 var debug = require('debug')('web-ui:server');
 var http = require('http');
+var log4js = require('log4js');
+log4js.configure({
+  appenders: { 
+    console: { type: 'console' } 
+  },
+  categories: { 
+    default: { 
+      appenders: ['console'],
+      level: 'debug' }
+    }
+});
+
+/**
+ * Initiate default logger
+ */
+var logger = log4js.getLogger();
 
 /**
  * Get port from environment and store in Express.
  */
-
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -26,6 +41,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+logger.trace("Opening socket on port: " + port);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -65,11 +81,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -86,7 +102,10 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  logger.debug('Listening on ' + bind);
 }
 
-process.on('unhandledRejection', e => { console.error(e); });
+process.on('unhandledRejection', e => { 
+  console.error(e); 
+  process.exit(100);
+});

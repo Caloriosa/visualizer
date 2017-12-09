@@ -1,16 +1,17 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
+var log4js = require('log4js');
 
 const { Client } = require("@caloriosa/rest-dto");
 
 var index = require('./routes/index');
 var user = require('./routes/user');
 
+var accessLogger = log4js.getLogger("Access");
 var app = express();
 var client = new Client({
   url: process.env.SERVICE_URL || "http://10.0.0.143:8080"
@@ -22,7 +23,7 @@ app.set('view engine', 'twig');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(log4js.connectLogger(accessLogger, {level: 'auto', format: ':method :url :status :response-time ms (:remote-addr)'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -64,7 +65,8 @@ app.use(function(err, req, res, next) {
 });
 
 client.on("handle", (data, response) => {
-  console.log(`API call: ${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
+  apiLogger = log4js.getLogger("API-call");
+  apiLogger.info(`${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
 });
 
 module.exports = app;

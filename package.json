@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "start:watch": "nodemon ./nin/www"
   },
   "dependencies": {
     "@caloriosa/rest-dto": "file:modules/rest-dto",
@@ -14,6 +15,7 @@
     "express": "~4.15.5",
     "jquery": "^3.2.1",
     "less-middleware": "~2.2.1",
+    "log4js": "^2.3.12",
     "morgan": "~1.9.0",
     "nodemon": "^1.12.5",
     "serve-favicon": "~2.4.5",
