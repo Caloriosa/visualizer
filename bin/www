@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+console.log()
+
 var debug = require('debug')('web-ui:server');
 var http = require('http');
 var log4js = require('log4js');
@@ -23,6 +24,10 @@ log4js.configure({
  * Initiate default logger
  */
 var logger = log4js.getLogger();
+
+logger.info("----------------------------------------");
+
+var app = require('../app'); // Application init
 
 /**
  * Get port from environment and store in Express.
@@ -102,7 +107,7 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  logger.debug('Listening on ' + bind);
+  logger.info('Listening on ' + bind);
 }
 
 process.on('unhandledRejection', e => { 

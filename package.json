@@ -10,6 +10,7 @@
     "@caloriosa/rest-dto": "file:modules/rest-dto",
     "body-parser": "~1.18.2",
     "bootstrap": "^4.0.0-beta.2",
+    "connect-memcached": "^0.2.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
@@ -20,6 +21,7 @@
     "log4js": "^2.3.12",
     "morgan": "~1.9.0",
     "nodemon": "^1.12.5",
+    "popper.js": "^1.12.9",
     "serve-favicon": "~2.4.5",
     "twig": "^0.10.3",
     "twig-markdown": "^0.1.2"

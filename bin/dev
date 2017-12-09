@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export SESSION_STORE="10.0.0.90:11211"
+
+npm run start:watch

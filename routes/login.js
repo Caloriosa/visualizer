@@ -22,12 +22,15 @@ router.post('/in', (req, res, next) => {
   authService.authenticate(req.body.login, req.body.password).then(authInfo => {
     logger.debug(authInfo);
     req.session.token = authInfo.token;
+    req.session.identityId = authInfo.identityId;
     req.session.save();
-    logger.info(`Login success! UserID: ${authInfo.identityID}`);
+    logger.info(`Login success! UserID: ${authInfo.identityId}`);
     res.redirect("/");
+    return;
   }).catch(err => { 
     logger.error(err);
-    next(new Error(err.message))
+    next(new Error(err.message));
+    return;
   });
 });
 
@@ -36,7 +39,7 @@ router.get("/out", (req, res, next) => {
     logger.info("User already logged out!");
     res.redirect("/sign/in");
   }
-  var authService = new AuthService(req.client, req.session.token || "sdfsdf");
+  var authService = new AuthService(req.client, req.session.token || null);
   authService.logout().then(metaInfo => {
     logger.debug(metaInfo);
     req.session.regenerate(err => {
@@ -46,11 +49,13 @@ router.get("/out", (req, res, next) => {
         return;
       }
       logger.info("Session regenerated!");
-      res.redirect("/sign/in");
+      res.redirect("/sign/in?message=You are been sucessfully logged out!");
+      return;
     });
   }).catch(err => {
     logger.error(err.message);
     next(err);
+    return;
   });
 });
 

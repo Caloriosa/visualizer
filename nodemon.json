@@ -1,5 +1,5 @@
 {
   "verbose": true,
-  "ignore": ["*.test.js"],
+  "ignore": ["*.test.js", "./sessions"],
   "ext": "js json twig less"
 }
