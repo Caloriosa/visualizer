@@ -1,9 +1,12 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="container">
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-  <span>{{token}}</span>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">{{title}}</h1>
+    <p>Welcome to {{title}}!</p>
+    <p>{{token}}</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
 </div>
 {% endblock %}

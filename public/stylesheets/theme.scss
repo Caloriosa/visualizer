@@ -1,0 +1,25 @@
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 16px;
+  background-color: #eee;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin: 0.25em 0;
+}
+
+.content {
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.footer-area {
+  padding: 1em 0;
+  color: $gray-800;
+  font-size: 14px;
+}
+
+/* Snippets */
+@import "snippets/login.scss";
+@import "snippets/error.scss";

@@ -1,9 +1,15 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="container">
-  <h1>{{message}}</h1>
-  <h2>{{error.status}}</h2>
-  <pre>{{error.stack}}</pre>
+<div class="error-area">
+  <div class="container container-error">
+    <div class="error-message">
+    <h1 class="display-2 error-heading">{{message}}</h1>
+    <h2 class="display-4 error-code">{{error.status}}</h2>
+  </div>
+  <!--<div class="error-stacktrace">
+    <pre>{{error.stack}}</pre>
+  </div>-->
+  </div>
 </div>
 {% endblock %}

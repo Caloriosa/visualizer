@@ -1,25 +1,23 @@
-// Custom.scss
-// Option A: Include all of Bootstrap
-
+@import "defaults.scss";
 @import "node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:400,600&subset=latin-ext');
 
-// Custom.scss
-// Option B: Include parts of Bootstrap
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
 
-// Required
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins";
-
-// Optional
-@import "node_modules/bootstrap/scss/reboot";
-@import "node_modules/bootstrap/scss/type";
-@import "node_modules/bootstrap/scss/images";
-@import "node_modules/bootstrap/scss/code";
-@import "node_modules/bootstrap/scss/grid";
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 body {
+  position: relative;
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100%;
 }
+
+@import "theme.scss";
