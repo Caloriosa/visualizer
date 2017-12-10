@@ -21,9 +21,11 @@ router.post('/in', (req, res, next) => {
   var authService = new AuthService(req.client);
   authService.authenticate(req.body.login, req.body.password).then(authInfo => {
     logger.debug(authInfo);
+    // Setup session logged in
     req.session.token = authInfo.token;
     req.session.identityId = authInfo.identityId;
     req.session.save();
+    // Redirect
     logger.info(`Login success! UserID: ${authInfo.identityId}`);
     res.redirect("/");
     return;
@@ -39,7 +41,7 @@ router.get("/out", (req, res, next) => {
     logger.info("User already logged out!");
     res.redirect("/sign/in");
   }
-  var authService = new AuthService(req.client, req.session.token || null);
+  var authService = new AuthService(req.client);
   authService.logout().then(metaInfo => {
     logger.debug(metaInfo);
     req.session.regenerate(err => {

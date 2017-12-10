@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session')
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var lessMiddleware = require('less-middleware');
+var sassMiddleware = require('node-sass-middleware');
 var log4js = require('log4js');
 var twigMarkdown = require('twig-markdown');
 var twig = require('twig');
@@ -20,9 +20,7 @@ var login = require('./routes/login');
 var logger = log4js.getLogger();
 var accessLogger = log4js.getLogger("Access");
 var app = express();
-var client = new Client({
-  url: process.env.SERVICE_URL || "http://10.0.0.143:8080"
-});
+
 // Configure sessions
 var sessOptions = {
   secret: 'keyboard cat',
@@ -49,20 +47,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(session(sessOptions))
-app.use(lessMiddleware(path.join(__dirname, 'public')));
+app.use(sassMiddleware({
+  /* Options */
+  src: path.join(__dirname, "public"),
+  dest: path.join(__dirname, 'public'),
+  debug: true,
+  outputStyle: 'compressed',
+  error: (err) => {
+    logger.error(err);
+  },
+  log: (severity, key, value) => {
+    logger.debug(`${severity} ${key} ${value}`);
+  }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use((req, res, next) => {
-  req.client = client;
-  console.dir(req.query);
+  req.client = createClient(req.session.token || null);
   res.locals.alert = req.query.message;
   if (!req.session.token) {
     next();
     return;
   }
-  let userService = new UserService(client, req.session.token);
+  let userService = new UserService(req.client);
   userService.fetchUser(req.session.identityId).then(user => {
     res.locals.user = user;
     next();
@@ -92,9 +101,18 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-client.on("handle", (data, response) => {
+function createClient(token = null) {
+  let client = new Client({
+    url: process.env.SERVICE_URL || "http://10.0.0.143:8080",
+    token: token
+  });
+  client.on('handle', clientHandle);
+  return client;
+}
+
+function clientHandle (data, response) {
   apiLogger = log4js.getLogger("API-call");
   apiLogger.info(`${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
-});
+}
 
 module.exports = app;
