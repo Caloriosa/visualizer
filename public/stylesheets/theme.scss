@@ -5,7 +5,6 @@ body {
 }
 
 h1, h2, h3 {
-  font-weight: 600;
   margin: 0.25em 0;
 }
 
@@ -20,6 +19,20 @@ h1, h2, h3 {
   font-size: 14px;
 }
 
+.thead-purple {
+  background: $purple;
+}
+
+.nav-item-search {
+  padding: 0.25em 0;
+  .searchbar {
+    margin: 0 1.25em;
+  }
+}
+
 /* Snippets */
 @import "snippets/login.scss";
 @import "snippets/error.scss";
+@import "snippets/userbar.scss";
+@import "snippets/profile.scss";
+@import "snippets/statcard.scss";

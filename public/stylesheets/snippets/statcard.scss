@@ -1,0 +1,33 @@
+.stat-cards-slot {
+  padding: 2em;
+  .card.stat-card:first-child {
+    margin-top: 0;
+  }
+  .card.stat-card {
+    margin: 2em 1em;
+  }
+}
+.card.stat-card {
+  color: $white;
+  .card-body {
+    padding: 1em 2em;
+    .title {
+      font-size: 3.25em;
+      display: block;
+      line-height: 1.25em;
+    }
+    .subtitle {
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
+  .card-icon {
+    position: absolute;
+    top: 0;
+    right: 0.25em;
+    font-size: 5em;
+    width: 1em;
+    text-align: center;
+  }
+}

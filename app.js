@@ -64,6 +64,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts'));
 app.use((req, res, next) => {
   req.client = createClient(req.session.token || null);
   if (req.query.message) {
@@ -78,7 +79,7 @@ app.use((req, res, next) => {
   }
   let userService = new UserService(req.client);
   userService.fetchUser(req.session.identityId).then(user => {
-    res.locals.user = user;
+    res.locals.loggedUser = user;
     next();
   }).catch(err => next(err.message));
 });

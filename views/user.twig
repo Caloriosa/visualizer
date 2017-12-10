@@ -1,9 +1,108 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-    <h2>{{user.login}}</h2>
-    <ul>
-      <li>{{user.name}}</li>
-      <li>{{user.role}}</li>
-    </ul>
+<div class="user-profile">
+  <div class="profile-header">
+    <div class="container">
+      <div class="avatar-area">
+       <img class="profile-pic" width="100" height="100" alt="" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6IzVEREREMzsiIGQ9Ik0yNTYsNTExLjk5OWMxNDAuOTk4LDAsMjU2LTExNC45OTksMjU2LTI1NS45OTdjMC0xNDEuMDAxLTExNC45OTktMjU2LTI1Ni0yNTZTMCwxMTUuMDAxLDAsMjU2LjAwMSAgQzAsMzk2Ljk5OSwxMTQuOTk5LDUxMS45OTksMjU2LDUxMS45OTl6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiM2NjY2NjY7IiBkPSJNMTcwLjUxMiwzMDEuOTk4Yy0yMS4zNDgtNTMuODU4LTY2LjE5MS0xMDIuNi05Ljc2My0yMDAuNzgxICBjMjMuMjQtNDAuNDM2LDU4LjczOS02Ny4xMDQsOTUuNDExLTU4LjA3NWMzNi42NzItOS4wMjgsNzIuMTcxLDE3LjY0LDk1LjQxMSw1OC4wNzVjNTYuNDI2LDk4LjE4MSwxMS41ODYsMTQ2LjkyMy05Ljc2NSwyMDAuNzgxICBsLTg1LjY0MywwLjIxMmwtODUuNjQ4LTAuMjEySDE3MC41MTJ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRUQxOTg7IiBkPSJNMTExLjkwOSwzODYuMTkzYy0yLjY3OCw0LjMyMy05LjM1OSw0MS4wODYtMTYuNzQ4LDY4Ljk1OCAgYzQzLjk1OCwzNS41NDQsOTkuOTA3LDU2Ljg0NSwxNjAuODM2LDU2Ljg0NWM2MC45MzIsMCwxMTYuODgtMjEuMzAxLDE2MC44MzgtNTYuODQ1Yy03LjM5Mi0yNy44NjktMTQuMDcyLTY0LjYzOC0xNi43NS02OC45NTggIGMtNDEuMTI2LTY2LjQwNi0xMDQuNTE4LTM3LjQxNy0xMDguODQtMTEzLjQwN2MwLDAtMjAuMzk0LDE1LjIxOS0zNS45NjYsMTUuMzU4Yy0xNS41NzMsMC4xMzktMzQuNTUtMTQuMzk4LTM0LjU1LTE0LjM5OCAgQzIxNi40MTcsMzQ5LjY3LDE1My4wMDYsMzE5LjgzNywxMTEuOTA5LDM4Ni4xOTN6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGMEI5N0Q7IiBkPSJNMjkyLjM0OSwyODMuNTE5Yy0wLjUxMS0zLjMzMS0wLjg4Ny02Ljg5My0xLjEwNC0xMC43MzFjMCwwLTIwLjM5NCwxNS4yMTktMzUuOTY2LDE1LjM1OCAgYy0xNS41NzMsMC4xMzktMzQuNTUtMTQuMzk4LTM0LjU1LTE0LjM5OGMtMC4yMiwzLjkwOC0wLjYwNiw3LjUyMy0xLjEzMywxMC44OThjMC4zOTksMC4zMTUsMC43OTUsMC42MzUsMS4yMDEsMC45NDdsLTAuMDA1LDAuMDU1ICBjMS4xOTksMS4wNDQsMTkuNDI4LDE2LjcxOSwzNC40ODQsMTYuNTYxYzE1LjA1NiwwLjE1NywzMy4yODMtMTUuNTIsMzQuNDg0LTE2LjU2MWwtMC4wMDMtMC4wNTUgIGMwLjg4NC0wLjY3NywxLjc0Mi0xLjM3NCwyLjU4OS0yLjA3MkwyOTIuMzQ5LDI4My41MTl6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRUQxOTg7IiBkPSJNMjIwLjc5NCwyNzMuNzk2YzEuMTk5LDAuOTA1LDE5LjQyOCwxNC40ODQsMzQuNDg0LDE0LjM0OGMxNS4wNTYsMC4xMzYsMzMuMjgzLTEzLjQ0NSwzNC40ODQtMTQuMzQ4ICBjMjIuNzU3LTEzLjI2Nyw0MS40My01Mi4zODMsMzcuMjE1LTk0Ljc3NmMtMy40NTItMzQuNzI2LTQxLjAxOCwxNi4xOTItNjcuMTgyLTU1LjQ1OGMtMzcuMDMxLDc3LjU3Mi03Mi4yMDMsMzEuNjg2LTc2LjIxMyw2MS4wODQgIGMtNC40MiwzMi4zOTEsMTMuNzY1LDczLjE0NywzNy4yMTIsODkuMTUyVjI3My43OTZ6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGQkI0Mjk7IiBkPSJNMTkwLjkxNiwzMjguMTEyYy0yMi40MTEsMTEuOTcxLTYzLjQwOCwxMi4zMzMtNzkuMDA3LDM3LjQxMiAgYy0yLjcxNyw0LjM2Ny05LjUzNyw1Ny44NjgtMTcuMDM5LDg5LjM5NGM0My45OTgsMzUuNjgzLDEwMC4wNjEsNTcuMDc5LDE2MS4xMjQsNTcuMDc5YzYxLjA2OCwwLDExNy4xMjYtMjEuMzkzLDE2MS4xMjctNTcuMDc5ICBjLTcuNTAyLTMxLjUyNi0xNS4xNDItODQuNjEyLTE3LjAzOS04OS4zOTRjLTEwLjM1OC0yNi4xMjUtNTguMzA2LTI3LjIxNi04MC43NC0zOS4yNjMgIGMtMzQuODgsMTI2LjU0Ni04Ni44NjgsMTM1LjE3My0xMjguNDI0LDEuODYybC0wLjAwOC0wLjAxSDE5MC45MTZ6Ii8+CjxnPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0yMDUuODU5LDMxNS41MzVjLTEuNDU2LDM5LjM3MSw1LjIzOCw5NS4xNDgsNDkuNDE0LDEwOS40MDIgICBjLTQxLjU5LDEuNzM5LTY4LjU3OC01OC4xODYtOTkuMzIyLTczLjg4MWw0OS45MDctMzUuNTE4VjMxNS41MzV6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRkZGRkZGOyIgZD0iTTMwNy4xNjQsMzE1LjUzNWMxLjUyNywzOS4zNzEtNS41LDk1LjE0OC01MS44OSwxMDkuNDAyYzQzLjY3MywxLjczOSw3Mi4wMTQtNTguMTg2LDEwNC4yOTItNzMuODgxICAgbC01Mi40MDQtMzUuNTE4TDMwNy4xNjQsMzE1LjUzNXoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+      </div>
+      <h4 class="user-name">{% if user.name %}{{user.name}}{% else %}{{user.login}}{% endif %}</h4>
+    </div>
+  </div>
+  <div class="profile-tabs">
+    <div class="container">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="devices-tab" data-toggle="tab" href="#devices" role="tab" aria-controls="devices" aria-selected="false">Devices</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="profile-content">
+    <div class="container">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="row">
+            <div class="col-8">
+              <h2>Profile info</h2>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">Login</th>
+                    <td>{{user.login}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Full name</th>
+                    <td>{{user.name}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CreatedAt</th>
+                    <td>{{user.createdAt}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-4 stat-cards-slot">
+              <div class="card stat-card bg-success">
+                <div class="card-body">
+                  <span class="title">25°C</span>
+                  <span class="subtitle">Inside</span>
+                </div>
+                <div class="card-icon">
+                  <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="card stat-card bg-info">
+                <div class="card-body">
+                  <span class="title">4</span>
+                  <span class="subtitle">Devices</span>
+                </div>
+                <div class="card-icon">
+                  <i class="fa fa-microchip" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="devices" role="tabpanel" aria-labelledby="devices-tab">
+          <h2>{% if user.name %}{{user.name}}{% else %}{{user.login}}{% endif %}'s devices</h2>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,42 @@
+.user-profile {
+  margin: 0;
+  padding: 0;
+}
+
+.profile-header {
+  padding: 2em;
+  padding-top: 3em;
+  text-align: center;
+  background: $purple;
+  .avatar-area {
+    display: block;
+    padding: 1em 0;
+  }
+  h4.user-name {
+    color: $white;
+  }
+}
+
+.profile-tabs {
+  background: $purple;
+}
+
+.profile-tabs .nav {
+  border: none;
+  a {
+    color: $white;
+  }
+  a:hover {
+    border: none;
+    border-bottom: 1px solid $white;
+    background: $white;
+    color: $purple;
+  }
+}
+
+.profile-content {
+  padding: 1em;
+  h1, h2, h3 {
+    margin-bottom: 1em;
+  }
+}

@@ -1,0 +1,15 @@
+.profile-pic {
+  vertical-align: middle;
+  margin: 0 0.4em;
+  bottom: 2px;
+  position: relative;
+}
+
+.user-menu {
+  width: 200px;
+}
+
+.user-menu .dropdown-item:hover {
+  background: $primary;
+  color: $white;
+}
