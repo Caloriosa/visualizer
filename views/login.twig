@@ -3,8 +3,8 @@
 {% block body %}
 <div class="container">
   {% if alert %}
-  <div class="alert alert-primary">
-    {{alert}}
+  <div class="alert alert-{{alert.type}}">
+    {{alert.message}}
   </div>
   {% endif %}
   <h3>Sign In</h3>

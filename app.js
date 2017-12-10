@@ -66,7 +66,12 @@ app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use((req, res, next) => {
   req.client = createClient(req.session.token || null);
-  res.locals.alert = req.query.message;
+  if (req.query.message) {
+    res.locals.alert = {
+      message: req.query.message,
+      type: req.query.alerter || "primary"
+    }
+  }
   if (!req.session.token) {
     next();
     return;

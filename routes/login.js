@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var log4js = require("log4js");
-var { AuthService, AuthInfo } = require("@caloriosa/rest-dto");
+var { AuthService, AuthInfo, typedefs } = require("@caloriosa/rest-dto");
 
 var logger = log4js.getLogger("Auth");
 
@@ -31,6 +31,10 @@ router.post('/in', (req, res, next) => {
     return;
   }).catch(err => { 
     logger.error(err);
+    if (err.status.code == typedefs.ApiStatuses.INVALID_CREDENTIALS) {
+      res.redirect("/sign/in?message=Wrong username or invalid password!&alerter=danger");
+      return;
+    }
     next(new Error(err.message));
     return;
   });
