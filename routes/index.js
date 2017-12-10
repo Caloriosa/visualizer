@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Caloriosa', token: req.session.token || null });
+  if (!res.locals.loggedUser) {
+    res.render('index', { title: 'Caloriosa'});
+    return;
+  }
+  res.render('dashboard', { title: 'Dashboard'});
 });
 
 module.exports = router;
