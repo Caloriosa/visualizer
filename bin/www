@@ -16,7 +16,7 @@ log4js.configure({
   categories: { 
     default: { 
       appenders: ['console'],
-      level: 'debug' }
+      level: 'trace' }
     }
 });
 

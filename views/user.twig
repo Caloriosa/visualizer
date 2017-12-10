@@ -39,9 +39,19 @@
                     <th scope="row">Full name</th>
                     <td>{{user.name}}</td>
                   </tr>
+                  {% if loggedUser.uid == user.uid %}
+                  <tr>
+                    <th scope="row">Email</th>
+                    <td>{{user.email}}<td>
+                  </tr>
+                  {% endif %}
                   <tr>
                     <th scope="row">CreatedAt</th>
-                    <td>{{user.createdAt}}</td>
+                    <td>{{user.createdAt|date("jS F Y - H:m")}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Account active</th>
+                    <td>{% if user.activated %}Yes{% else %}No{% endif %}</td>
                   </tr>
                 </tbody>
               </table>

@@ -13,6 +13,8 @@ var MemcachedStore = require('connect-memcached')(session);
 
 const { Client, UserService } = require("@caloriosa/rest-dto");
 
+var WebError = require("./misc/WebError");
+
 var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
@@ -90,7 +92,7 @@ app.use('/sign', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new WebError('Page Not Found');
   err.status = 404;
   next(err);
 });
@@ -98,9 +100,18 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   let status = err.httpStatus || {};
+
+  if (err.constructor.name != "WebError") {
+    let _err = new WebError("Internal Server Error");
+    _err.status = 500;
+    _err.parent = err;
+    err = _err;
+  }
+
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.e_message = err.message;
+  res.locals.e_status = err.status;
+  res.locals.error = req.app.get('env') === 'development' ? err : null;
 
   // render the error page
   res.status(err.status || 500);

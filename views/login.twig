@@ -1,32 +1,29 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="container">
-  {% if alert %}
-  <div class="alert alert-{{alert.type}}">
-    {{alert.message}}
+<div class="sign-in">
+  <div class="container">
+    <form class="form-signin" method="post">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      {% if errors %}
+      {% for error in errors %}
+      <div class="alert alert-danger">
+        {{error.msg}}
+      </div>
+      {% endfor %}
+      {% endif %}
+      <label for="inputEmail" class="sr-only">Login</label>
+      <input name="login" type="text" class="form-control" placeholder="Your login name">
+      <label class="sr-only">Password</label>
+      <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me">
+          Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+    </form>
   </div>
-  {% endif %}
-  <form class="form-signin" method="post">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    {% if errors %}
-    {% for error in errors %}
-    <div class="alert alert-danger">
-      {{error.msg}}
-    </div>
-    {% endfor %}
-    {% endif %}
-    <label for="inputEmail" class="sr-only">Login</label>
-    <input name="login" type="text" class="form-control" placeholder="Your login name">
-    <label class="sr-only">Password</label>
-    <input name="password" type="password" class="form-control" id="password" placeholder="Password">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me">
-        Remember me
-      </label>
-    </div>
-    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
-  </form>
 </div>
 {% endblock %}

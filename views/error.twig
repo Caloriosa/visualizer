@@ -1,15 +1,26 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="error-area">
+<div class="error-area error-{{e_status}}">
   <div class="container container-error">
-    <div class="error-message">
-    <h1 class="display-2 error-heading">{{message}}</h1>
-    <h2 class="display-4 error-code">{{error.status}}</h2>
-  </div>
-  <!--<div class="error-stacktrace">
-    <pre>{{error.stack}}</pre>
-  </div>-->
+    <div class="row">
+      <div class="col error-message">
+        <h1 class="display-2 error-heading">{{e_message}}</h1>
+        <h2 class="display-4 error-code">{{e_status}}</h2>
+      </div>
+      <div class="col error-image">
+      </div>
+    </div>
+    {% if error %}
+    <div class="error-stacktrace">
+      <span class="error-caption">Error: {{error.message}}</span>
+      <pre>{{error.stack}}</pre>
+      {% if error.parent %}
+      <span class="error-caption">Parent error: {{error.parent.message}}</span>
+      <pre>{{error.parent.stack}}</pre>
+      {% endif %}
+    </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

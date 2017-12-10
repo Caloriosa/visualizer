@@ -30,6 +30,10 @@ h1, h2, h3 {
   }
 }
 
+.general-alert {
+  margin: 2em 0;
+}
+
 /* Snippets */
 @import "snippets/login.scss";
 @import "snippets/error.scss";
