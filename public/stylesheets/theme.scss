@@ -34,6 +34,11 @@ h1, h2, h3 {
   margin: 2em 0;
 }
 
+.form-control-note {
+  color: lighten($dark, 30%);
+  font-size: 0.8em;
+}
+
 /* Snippets */
 @import "snippets/login.scss";
 @import "snippets/error.scss";

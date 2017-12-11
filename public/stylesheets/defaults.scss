@@ -4,7 +4,7 @@ $theme-colors: (
   "dark": #292d32
 );
 
-$enable-rounded: false;
+//$enable-rounded: false;
 
 @function color($key: "blue") {
   @return map-get($colors, $key);

@@ -11,7 +11,7 @@
   </div>
   <div class="container">
     <h3 class="form-signin-heading">Please sign in</h3>
-    <form class="form-signin" method="post">
+    <form class="form-signin rounded" method="post">
       {% include 'snippets/alerter.twig' %}
       {% if errors %}
       {% for error in errors %}
@@ -21,18 +21,12 @@
       {% endfor %}
       {% endif %}
       <label for="inputEmail" class="sr-only">Login</label>
-      <input name="login" type="text" class="form-control" placeholder="Your login name">
+      <input name="login" type="text" class="form-control rounded-top" placeholder="Your login name">
       <label class="sr-only">Password</label>
-      <input name="password" type="password" class="form-control" id="password" placeholder="Password">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="remember-me">
-          Remember me
-        </label>
-      </div>
+      <input name="password" type="password" class="form-control rounded-bottom" id="password" placeholder="Password">
       <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
     </form>
-    <div class="signin-footer">
+    <div class="signin-footer rounded">
       Newbie to Caloriosa? <a href="/sign/up">Create account</a>
     </div>
   </div>

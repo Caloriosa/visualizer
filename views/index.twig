@@ -1,15 +1,37 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="jumbotron">
+<div class="jumbotron landing-jumbotron">
   <div class="container">
-    <h1 class="display-3">{{title}}</h1>
-    <p>Welcome to {{title}}!</p>
-    <p>{{token}}</p>
-    <p>
-      <a class="btn btn-primary btn-lg" href="/world" role="button">Explore our world &raquo;</a>
-      <a class="btn btn-success btn-lg" href="/sign/up" role="button">Begin measuring &raquo;</a>
-    </p>
+    <div class="row">
+      <div class="col">
+        <h1 class="display-3">Home sensor measuring</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="mt-5">
+          <a class="btn btn-primary btn-lg" href="/world" role="button">Explore our world &raquo;</a>
+        </p>
+      </div>
+      <div class="col-5">
+        <form class="landing-sign-up rounded"action="/sign/up" method="post">
+          <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+            <small id="passwordHelp" class="form-text text-muted">Use at least one letter, one numeral, and seven characters.</small>
+          </div>
+          <button type="submit" class="btn btn-success btn-lg btn-block">Begin measuring</button>
+          <p class="form-control-note mt-2 mb-0 text-center">By clicking "Begin measuring" you agree with our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
