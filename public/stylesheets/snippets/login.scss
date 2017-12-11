@@ -1,14 +1,21 @@
+body.login-page {
+  background-color: #eeeeee;
+}
+
 .sign-in {
   margin: 2em 0;
 }
 
 .form-signin {
   max-width: 330px;
-  padding: 15px;
+  padding: 1.5em;
   margin: 0 auto;
+  background: darken($white, 2%);
+  border: 1px solid darken($white, 15%);
 }
 .form-signin-heading {
   margin-bottom: 0.5em;
+  text-align: center;
 }
 .form-signin,
 .form-signin .checkbox {
@@ -36,4 +43,18 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.signin-footer {
+  max-width: 330px;
+  padding: 1em;
+  margin: 0 auto;
+  background: darken($white, 4%);
+  border: 1px solid darken($white, 15%);
+  text-align: center;
+}
+
+.signin-goback {
+  text-align: center;
+  margin: 2em auto;
 }
