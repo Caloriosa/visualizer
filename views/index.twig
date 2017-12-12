@@ -4,15 +4,15 @@
 <div class="jumbotron landing-jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md">
         <h1 class="display-3">Home sensor measuring</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         <p class="mt-5">
-          <a class="btn btn-primary btn-lg" href="/world" role="button">Explore our world &raquo;</a>
+          <a class="btn btn-primary btn-lg btn-responsive" href="/world" role="button">Explore our world &raquo;</a>
         </p>
       </div>
-      <div class="col-5">
-        <form class="landing-sign-up rounded"action="/sign/up" method="post">
+      <div class="col-12 col-md-5">
+        <form class="landing-sign-up rounded d-none d-md-block"action="/sign/up" method="post">
           <div class="form-group">
             <label for="login">Login</label>
             <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name">
@@ -30,6 +30,9 @@
           <button type="submit" class="btn btn-success btn-lg btn-block">Begin measuring</button>
           <p class="form-control-note mt-2 mb-0 text-center">By clicking "Begin measuring" you agree with our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
         </form>
+        <div class="d-md-none">
+          <a href="/sign/up" class="btn btn-success btn-lg btn-block">Begin measuring &raquo;</a>
+        </div>
       </div>
     </div>
   </div>

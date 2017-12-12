@@ -56,10 +56,12 @@ app.use(sassMiddleware({
   debug: true,
   outputStyle: 'compressed',
   error: (err) => {
-    logger.error(err);
+    let _logger = log4js.getLogger("SassCompiler")
+    _logger.error(err);
   },
   log: (severity, key, value) => {
-    logger.debug(`${severity} ${key} ${value}`);
+    let _logger = log4js.getLogger("SassCompiler")
+    _logger.debug(`${severity} ${key} ${value}`);
   }
 }));
 app.use(express.static(path.join(__dirname, 'public')));
