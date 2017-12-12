@@ -32,7 +32,8 @@ router.post('/in', (req, res, next) => {
   }).catch(err => { 
     logger.error(err);
     if (err.status.code == typedefs.ApiStatuses.INVALID_CREDENTIALS) {
-      res.redirect("/sign/in?message=Wrong username or invalid password!&alerter=danger");
+      req.flash("error", "Wrong username or invalid password");
+      res.redirect("/sign/in");
       return;
     }
     next(new Error(err.message));
@@ -55,7 +56,8 @@ router.get("/out", (req, res, next) => {
         return;
       }
       logger.info("Session regenerated!");
-      res.redirect("/sign/in?message=You are been sucessfully logged out!");
+      req.flash("info", "You are been sucessfully logged out!");
+      res.redirect("/sign/in");
       return;
     });
   }).catch(err => {

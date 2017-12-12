@@ -12,7 +12,7 @@
   <div class="container">
     <h3 class="form-signin-heading">Please sign in</h3>
     <form class="form-signin rounded" method="post">
-      {% include 'snippets/alerter.twig' %}
+      {% include 'snippets/flashes.twig' %}
       {% if errors %}
       {% for error in errors %}
       <div class="alert alert-danger">

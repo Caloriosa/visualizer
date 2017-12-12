@@ -10,6 +10,7 @@ var log4js = require('log4js');
 var twigMarkdown = require('twig-markdown');
 var twig = require('twig');
 var MemcachedStore = require('connect-memcached')(session);
+var flash = require('connect-flash');
 
 const { Client, UserService } = require("@caloriosa/rest-dto");
 
@@ -49,6 +50,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(session(sessOptions))
+app.use(flash());
 app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, "public"),
@@ -64,6 +66,7 @@ app.use(sassMiddleware({
     _logger.debug(`${severity} ${key} ${value}`);
   }
 }));
+app.use(renderOverhead);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
@@ -132,6 +135,15 @@ function createClient(token = null) {
 function clientHandle (data, response) {
   apiLogger = log4js.getLogger("API-call");
   apiLogger.info(`${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
+}
+
+function renderOverhead(req, res, next) {
+  var render = res.render;
+  res.render = (view, options, fn) => {
+    options = Object.assign(options || {}, {flash: req.flash()});
+    render.call(res, view, options, fn);
+  }
+  next();
 }
 
 module.exports = app;

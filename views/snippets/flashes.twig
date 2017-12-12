@@ -1,0 +1,22 @@
+{% if flash %}
+  {% set type = {
+    "error": "danger",
+    "danger": "danger",
+    "info": "info",
+    "message": "primary",
+    "success": "success",
+    "ok": "success",
+    "warning": "warning",
+    "warn": "warning"
+  }%}
+  {% for key, flashCategory in flash %}
+    {% for message in flashCategory %}
+    <div class="alert alert-{{ type[key] ? type[key] : 'secondary' }} alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+  {% endfor %}
+{% endif %}
