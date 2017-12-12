@@ -1,6 +1,12 @@
+$font-color: darken($dark, 4%);
+$font-color-light: lighten($dark, 10%);
+$font-color-veil: lighten($dark, 25%);
+$font-color-air: lighten($dark, 50%);
+
 body {
   font-family: 'Barlow Semi Condensed', sans-serif;
   font-size: 16px;
+  color: $font-color;
   background-color: $white;
 }
 
@@ -48,6 +54,10 @@ h1, h2, h3 {
 .form-control-note {
   color: lighten($dark, 30%);
   font-size: 0.8em;
+}
+
+.navbar-brand img {
+  margin-bottom: 5px;
 }
 
 /* Snippets */
