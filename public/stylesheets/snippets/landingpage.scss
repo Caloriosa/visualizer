@@ -11,13 +11,16 @@
 }
 
 .landing-jumbotron {
+  background: $dark url("/images/weather.png");
+  background-blend-mode: screen;
   p.lead {
     font-size: 28px;
   }
 }
 
 .landing-sign-up {
-  padding: 2em;
+  padding: 1.75em 2.25em;
   background: $white;
   color: $font-color-light;
+  box-shadow: 1px 1px 10px lighten($dark, 35%);
 }
