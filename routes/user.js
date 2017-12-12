@@ -12,7 +12,7 @@ router.get('/:userLogin', async (req, res, next) => {
   var userService = new UserService(req.client);
   // Is requested user me? Get me!
   if (res.locals.loggedUser && res.locals.loggedUser.login === req.params.userLogin){
-    let user = await userService.me();
+    let user = await userService.fetchMe();
     logger.trace(user);
     res.render('user', {
       user: user
