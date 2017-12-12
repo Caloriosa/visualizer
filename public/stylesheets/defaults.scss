@@ -1,7 +1,7 @@
 $theme-colors: (
   "primary": #0074d9,
   "danger": #ff4136,
-  "dark": #292d32
+  "dark": #1e2024
 );
 
 //$enable-rounded: false;
@@ -29,3 +29,6 @@ $theme-colors: (
     box-shadow: $top $left $blur $color;
   }
 }
+
+$enable-gradients: true;
+$enable-shadows : true;
