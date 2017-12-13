@@ -37,3 +37,43 @@
   padding: 2em 0;
   background: lighten(color("gray"), 35%);
 }
+
+.landing-widget {
+  color: darken(color("gray"), 10%);
+  text-align: center;
+  .widget-icon {
+    font-size: 5.5em;
+    margin-bottom: 0.15em;
+  }
+  .widget-label {
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  }
+}
+
+.landing-widget.widget-bordered {
+  border-left: 1px solid lighten(color("gray"), 25%);
+  border-right: 1px solid lighten(color("gray"), 25%);
+}
+
+.landing-section {
+  padding: 2em 0;
+  .landing-section-heading {
+    padding: 2em 0;
+    text-align: center;
+  }
+  .heading-label {
+    font-size: 16px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: color("gray");
+  }
+  h2 {
+    padding: 0.5em 2em;
+  }
+  p {
+    padding: 1em 0;
+    line-height: 1.75em;
+  }
+}
