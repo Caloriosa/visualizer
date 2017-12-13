@@ -16,7 +16,7 @@ log4js.configure({
   categories: { 
     default: { 
       appenders: ['console'],
-      level: 'trace' }
+      level: process.env.LOG_LEVEL || 'info' }
     }
 });
 
@@ -34,6 +34,11 @@ var app = require('../app'); // Application init
  */
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+/**
+ * Prints info about environment
+ */
+logger.info("Running in mode: " + app.get("env"));
 
 /**
  * Create HTTP server.

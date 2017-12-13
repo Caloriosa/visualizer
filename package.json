@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "start:watch": "nodemon ./nin/www"
+    "start": "NODE_ENV=\"production\" node ./bin/www",
+    "start:watch": "nodemon ./bin/www",
+    "start:dev": "WATCH=\"true\" exec ./bin/dev",
+    "start:dev-unwatch": "exec ./bin/dev"
   },
   "dependencies": {
     "@caloriosa/rest-dto": "file:modules/rest-dto",

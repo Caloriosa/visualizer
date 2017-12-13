@@ -24,21 +24,35 @@ var logger = log4js.getLogger();
 var accessLogger = log4js.getLogger("Access");
 var app = express();
 
-// Configure sessions
+/**
+ * Client configuration
+ */
+const clientOptions = {
+  url: process.env.SERVICE_URL || "http://localhost:6060"
+};
+
+/**
+ * Session configuration
+ */
 var sessOptions = {
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 };
-// Init memcached session store if host defined by environment
 if (process.env.SESSION_STORE) {
+  // Init memcached session store if host defined by environment
   logger.info("Using memcached session store: " + process.env.SESSION_STORE);
   sessOptions.store = new MemcachedStore({hosts: [process.env.SESSION_STORE]});
 }
 
+/**
+ * Setup Twig extensions
+ */
 twig.extend(twigMarkdown);
 
-// view engine setup
+/**
+ * View engine setup
+ */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
@@ -74,12 +88,6 @@ app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'
 app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts'));
 app.use((req, res, next) => {
   req.client = createClient(req.session.token || null);
-  if (req.query.message) {
-    res.locals.alert = {
-      message: req.query.message,
-      type: req.query.alerter || "primary"
-    }
-  }
   if (!req.session.token) {
     next();
     return;
@@ -124,10 +132,8 @@ app.use(function(err, req, res, next) {
 });
 
 function createClient(token = null) {
-  let client = new Client({
-    url: process.env.SERVICE_URL || "http://10.0.0.143:8080",
-    token: token
-  });
+  let opts = Object.assign(clientOptions, {token: token});
+  let client = new Client(opts);
   client.on('handle', clientHandle);
   return client;
 }
@@ -145,5 +151,7 @@ function renderOverhead(req, res, next) {
   }
   next();
 }
+
+logger.info("Service URL: " + clientOptions.url);
 
 module.exports = app;
