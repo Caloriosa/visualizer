@@ -11,10 +11,12 @@
 }
 
 .landing-jumbotron {
+  margin: 0;
   background: lighten(theme-color('dark'),5%);
+  background: linear-gradient(lighten(theme-color('dark'),4%),lighten(theme-color('dark'),6%));
   color: $white;
   border-radius: 0;
-  border-bottom: 1px solid darken($dark, 5%);
+  border-bottom: 1px solid darken($dark, 25%);
   h1, h2, h3 {
     text-shadow: 1px 1px 5px darken(theme-color('dark'), 2%);
   }
@@ -29,4 +31,9 @@
   background: $white;
   color: $font-color-light;
   box-shadow: 1px 2px 10px darken(theme-color('dark'), 5%);
+}
+
+.landing-bar {
+  padding: 2em 0;
+  background: lighten(color("gray"), 35%);
 }

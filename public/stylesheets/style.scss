@@ -1,24 +1,13 @@
+/*!
+ * Caloriosa theme stylesheet
+ * Created by PurrplingCat
+ */
+
 @import "defaults.scss";
+
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:400,600&subset=latin-ext');
 
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-body {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  min-height: 100%;
-}
-
+@import "util.scss";
 @import "theme.scss";
