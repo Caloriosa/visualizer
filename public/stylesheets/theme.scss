@@ -40,14 +40,24 @@ h1, h2, h3 {
   background: $purple;
 }
 
+.navbar {
+  border-bottom: 1px solid darken($dark, 12%);
+  @include box-shadow(0px, 1px, 5px, darken($dark, 12%));
+}
+
 .nav-item-search {
   padding: 0.25em 0;
   .searchbar {
-    margin-right: 2.25em;
+    margin: 0 1em;
     .form-control {
-      background: rgba(255, 255, 255, 0.125);
+      background: rgba(255, 255, 255, 0.030);
       border-color: rgba(255, 255, 255, 0.100);
-      width: 14em;
+      width: 15em;
+      color: rgba(255, 255, 255, 0.850);
+    }
+    .input-group-addon {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.150);
     }
   }
 } 
