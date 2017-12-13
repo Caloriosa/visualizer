@@ -93,8 +93,9 @@ app.use((req, res, next) => {
     return;
   }
   let userService = new UserService(req.client);
-  userService.fetchUser(req.session.identityId).then(user => {
+  userService.fetchMe().then(user => {
     res.locals.loggedUser = user;
+    logger.trace(user);
     next();
   }).catch(err => next(err.message));
 });
@@ -112,13 +113,16 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  let status = err.httpStatus || {};
-
   if (err.constructor.name != "WebError") {
     let _err = new WebError("Internal Server Error");
     _err.status = 500;
     _err.parent = err;
     err = _err;
+  }
+
+  //Log errors, but ignore 404
+  if (err.status !== 404) {
+    logger.error(err);
   }
 
   // set locals, only providing error in development
@@ -140,7 +144,7 @@ function createClient(token = null) {
 
 function clientHandle (data, response) {
   apiLogger = log4js.getLogger("API-call");
-  apiLogger.info(`${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
+  apiLogger.info(`${response.req.method} ${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
 }
 
 function renderOverhead(req, res, next) {
