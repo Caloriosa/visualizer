@@ -38,6 +38,28 @@
   background: lighten(color("gray"), 35%);
 }
 
+.landing-bar.bar-devices {
+  color: darken(color("gray"), 30%);
+  h2 {
+    font-size: 2.5em;
+  }
+  .logos {
+    padding: 2em 0;
+    img {
+      margin: 0 1em;
+    }
+    .andmore {
+      margin-top: 2.5em;
+      font-size: 1em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: darken(color("gray"), 15%);
+      display: block;
+      color: darken(color("gray"), 40%);
+    }
+  }
+}
+
 .landing-widget {
   color: darken(color("gray"), 10%);
   text-align: center;
@@ -77,10 +99,59 @@
     padding: 1em 0;
     line-height: 1.75em;
   }
+  h1, h2 {
+    text-shadow: 0px 1px 1px lighten(theme-color('dark'), 25%);
+  }
 }
 
 .landing-section.section-about {
+  .landing-section-heading {
+    h1, h2 {
+      border-bottom: 1px solid darken($light, 6%);
+    }
+  }
   h3 {
     letter-spacing: 2px;
+  }
+}
+
+.landing-section.section-howitworks {
+  background: darken($dark, 10%);
+  color: $white;
+  border-top: 1px solid darken($dark, 12%);
+  border-bottom: 1px solid darken($dark, 12%);
+  @include box-shadow(2px, 1px, 5px, darken($dark, 12%));
+  .heading-label {
+    color: rgba(255, 255, 255, 0.710);
+  }
+  p {
+    color: rgba(255, 255, 255, 0.900);
+    text-align: center;
+  }
+  .landing-image {
+    text-align: center;
+  }
+}
+
+.landing-section.section-explore {
+  .landing-section-heading {
+    h1, h2 {
+      border-bottom: 1px solid darken($light, 6%);
+    }
+  }
+}
+
+.landing-section.section-faq {
+  background: $info;
+  color: $white;
+  border-top: 1px solid darken($info, 12%);
+  border-bottom: 1px solid darken($info, 12%);
+  @include box-shadow(2px, 1px, 5px, darken($info, 12%));
+  .heading-label {
+    color: rgba(255, 255, 255, 0.710);
+  }
+  h4 {
+    text-decoration: underline;
+    line-height: 1.5em;
   }
 }
