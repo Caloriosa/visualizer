@@ -6,7 +6,7 @@ var { AuthService, AuthInfo, typedefs } = require("@caloriosa/rest-dto");
 var logger = log4js.getLogger("Auth");
 
 router.get('/in', (req, res, next) => {
-  res.render('login');
+  res.render('login', {title: "Sign in"});
 });
 
 router.post('/in', (req, res, next) => {
@@ -15,7 +15,7 @@ router.post('/in', (req, res, next) => {
 
   var errors = req.validationErrors();
   if (errors) {
-    res.render('login', {errors: errors});
+    res.render('login', {title: "Sign in", errors: errors});
     return;
   }
   var authService = new AuthService(req.client);
