@@ -114,7 +114,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   if (err.constructor.name != "WebError") {
-    let _err = new WebError("Internal Server Error");
+    let _err = new WebError("Server Error");
     _err.status = 500;
     _err.parent = err;
     err = _err;
@@ -132,7 +132,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { title: err.message});
 });
 
 function createClient(token = null) {

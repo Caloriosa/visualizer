@@ -39,7 +39,7 @@
 }
 
 .landing-bar.bar-devices {
-  color: darken(color("gray"), 30%);
+  color: darken(color("gray"), 20%);
   h2 {
     font-size: 2.5em;
   }
@@ -53,9 +53,8 @@
       font-size: 1em;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: darken(color("gray"), 15%);
       display: block;
-      color: darken(color("gray"), 40%);
+      color: darken(color("gray"), 30%);
     }
   }
 }
@@ -107,7 +106,7 @@
 .landing-section.section-about {
   .landing-section-heading {
     h1, h2 {
-      border-bottom: 1px solid darken($light, 6%);
+      border-bottom: 1px solid darken($light, 10%);
     }
   }
   h3 {
@@ -121,6 +120,11 @@
   border-top: 1px solid darken($dark, 12%);
   border-bottom: 1px solid darken($dark, 12%);
   @include box-shadow(2px, 1px, 5px, darken($dark, 12%));
+  .landing-section-heading {
+    h1, h2 {
+      border-bottom: 1px solid darken(theme-color("dark"), 2%);
+    }
+  }
   .heading-label {
     color: rgba(255, 255, 255, 0.710);
   }
@@ -136,16 +140,21 @@
 .landing-section.section-explore {
   .landing-section-heading {
     h1, h2 {
-      border-bottom: 1px solid darken($light, 6%);
+      border-bottom: 1px solid darken($light, 10%);
     }
   }
 }
 
 .landing-section.section-faq {
-  background: $info;
+  background: theme-color("info");
   color: $white;
-  border-top: 1px solid darken($info, 12%);
-  border-bottom: 1px solid darken($info, 12%);
+  border-top: 1px solid darken(theme-color("info"), 12%);
+  border-bottom: 1px solid darken(theme-color("info"), 12%);
+  .landing-section-heading {
+    h1, h2 {
+      border-bottom: 1px solid darken(theme-color("info"), 4%);
+    }
+  }
   @include box-shadow(2px, 1px, 5px, darken($info, 12%));
   .heading-label {
     color: rgba(255, 255, 255, 0.710);
@@ -165,9 +174,9 @@
   .landing-section-heading {
     padding: 0;
     padding-bottom: 2em;
-    h2 {
-      padding: 0;
+    h1, h2 {
       font-size: 2.25em;
+      border-bottom: 1px solid darken(theme-color("warning"), 6%);
     }
   }
   .form-control-note {
