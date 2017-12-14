@@ -3,13 +3,12 @@
 {% block body %}
 <div class="error-area error-{{e_status}}">
   <div class="container container-error">
-    <div class="row">
-      <div class="col error-message">
+    <div class="d-flex justify-content-center">
+      <div class="p-2 error-message flex-column align-self-center">
         <h1 class="display-2 error-heading">{{e_message}}</h1>
         <h2 class="display-4 error-code">{{e_status}}</h2>
       </div>
-      <div class="col d-none d-md-block error-image">
-      </div>
+      <div class="p-2 error-image flex-column ml-auto d-none d-md-block"></div>
     </div>
     {% if error %}
     <div class="error-stacktrace">
