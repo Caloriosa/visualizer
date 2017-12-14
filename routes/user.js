@@ -7,7 +7,7 @@ var router = express.Router();
 var logger = log4js.getLogger("User");
 
 /* GET users listing. */
-router.get('/:userLogin', async (req, res, next) => {
+router.get('/@:userLogin', async (req, res, next) => {
   try {
   var userService = new UserService(req.client);
   // Is requested user me? Get me!
