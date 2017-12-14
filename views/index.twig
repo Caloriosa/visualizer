@@ -189,14 +189,14 @@
     </div>
     <div class="row">
       <div class="col">
-        <h4>Question 1</h4>
+        <h4 class="question">Question 1</h4>
         <p> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
       <div class="col">
-        <h4>Question 2</h4>
+        <h4 class="question">Question 2</h4>
         <p> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -205,20 +205,43 @@
     </div>
     <div class="row">
       <div class="col">
-        <h4>Question 3</h4>
+        <h4 class="question">Question 3</h4>
         <p> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
       <div class="col">
-        <h4>Question 4</h4>
+        <h4 class="question">Question 4</h4>
         <p> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
     </div>
+  </div>
+</div>
+<div class="landing-section section-signup">
+  <div class="container">
+    <div class="landing-section-heading">
+      <h2>Join us today!</h2>
+    </div>
+    <form class="form-inline justify-content-center" action="/sign/up" method="post">
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <label class="sr-only" for="login">Login</label>
+        <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name">
+      </div>
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <label class="sr-only" for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email address">
+      </div>
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <label class="sr-only" for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+      </div>
+      <button type="submit" class="btn btn-success">Begin measuring</button>
+    </form>
+    <p class="form-control-note mt-2 mb-0 text-center">By clicking "Begin measuring" you agree with our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
   </div>
 </div>
 {% endblock %}

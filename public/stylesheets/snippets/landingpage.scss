@@ -150,8 +150,28 @@
   .heading-label {
     color: rgba(255, 255, 255, 0.710);
   }
-  h4 {
+  .question {
     text-decoration: underline;
     line-height: 1.5em;
+  }
+}
+
+.landing-section.section-signup {
+  background: theme-color("warning");
+  color: $white;
+  border-top: 1px solid darken(theme-color("warning"), 12%);
+  border-bottom: 1px solid darken(theme-color("warning"), 12%);
+  @include box-shadow(2px, 1px, 5px, darken(theme-color("warning"), 12%));
+  .landing-section-heading {
+    padding: 0;
+    padding-bottom: 2em;
+    h2 {
+      padding: 0;
+      font-size: 2.25em;
+    }
+  }
+  .form-control-note {
+    color: darken(color("gray"), 10%);
+    font-size: 16px;
   }
 }
