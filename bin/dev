@@ -5,8 +5,10 @@ WORKDIR=$(dirname $0);
 export NODE_ENV="development"
 export LOG_LEVEL="trace"
 
-export SESSION_STORE="10.0.0.90:11211"
-export SERVICE_URL="http://10.0.0.143:8080"
+if [ "$(hostname)" == "DESKTOP-4NV1D54" ]; then
+    export SESSION_STORE="10.0.0.90:11211"
+    export SERVICE_URL="http://10.0.0.143:8080"
+fi
 
 if [ "$WATCH" == "true" ]; then
     npm run start:watch
