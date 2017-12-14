@@ -31,9 +31,26 @@ h1, h2, h3 {
 }
 
 .footer-area {
-  padding: 1em 0;
-  color: $gray-800;
+  padding: 2em 0;
+  color: darken($light, 25%);
+  background: theme-color("dark");
   font-size: 14px;
+  border-top: 1px solid darken(theme-color("dark"), 12%);
+  @include box-shadow(1px, 0px, 5px, darken(theme-color("dark"), 12%));
+  a {
+    color: $light;
+  }
+  .list-inline {
+    display: inline-block;
+    margin: 0 1.5em;
+    .list-inline-item {
+      margin: 0 0.5em;
+    }
+  }
+  p {
+    padding: 1em 0;
+    color: darken($light, 40%);
+  }
 }
 
 .thead-purple {
@@ -42,7 +59,7 @@ h1, h2, h3 {
 
 .navbar {
   border-bottom: 1px solid darken($dark, 12%);
-  @include box-shadow(0px, 1px, 5px, darken($dark, 12%));
+  @include box-shadow(0px, 1px, 5px, darken(theme-color("dark"), 12%));
 }
 
 .nav-item-search {
