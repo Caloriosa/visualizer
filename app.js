@@ -85,6 +85,7 @@ app.use(renderOverhead);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/vendor', express.static(__dirname + '/node_modules/jquery-validation/dist'));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts'));
 app.use((req, res, next) => {

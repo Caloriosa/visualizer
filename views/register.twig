@@ -1,0 +1,55 @@
+{% extends 'layout.twig' %} 
+
+{% block body %}
+<div class="container mt-4">
+  <h2>Join Caloriosa</h2>
+  <p class="lead">And begin your measuring today!</p>
+  <ol class="steps">
+    <li class="current">
+      <i class="fa fa-id-card-o" aria-hidden="true"></i>
+      <strong class="step">Step 1:</strong>
+      Create account
+    </li>
+    <li>
+      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+      <strong class="step">Step 2:</strong>
+      Verify your email
+    </li>
+    <li>
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      <strong class="step">Step 3:</strong>
+      Sign in & create your first device
+    </li>
+  </ol>
+  <div class="row">
+    <div class="col-12 col-md">
+      <form class="rounded d-none d-md-block" action="/sign/up" method="post" id="register-form" novalidate>
+        <div class="form-group">
+          <label for="login">Login</label>
+          <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name" required>
+          <div class="invalid-feedback">
+            Please choose your login name.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+          <small id="passwordHelp" class="form-text text-muted">Use at least one letter, one numeral, and seven characters.</small>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Begin measuring</button>
+        <p class="mt-4 mb-0">By clicking "Begin measuring" you agree with our
+          <a href="#">terms of service</a> and
+          <a href="#">privacy policy</a>.</p>
+      </form>
+    </div>
+    <div class="col-md d-none d-md-block text-center m-auto">
+        <img width="300" height="300" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDkuMjg3IDUwOS4yODciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwOS4yODcgNTA5LjI4NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxjaXJjbGUgc3R5bGU9ImZpbGw6I0VFNEE2ODsiIGN4PSIyNTQuNjQ0IiBjeT0iMjU0LjY0NCIgcj0iMjU0LjY0NCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkNGQ0ZEOyIgZD0iTTMwMy40Nyw2Ni40NTh2MTYuOTU0aDE0LjU4djE5My42MTFjMCwyNC40MTMsMTkuNjY2LDQ0LjA3OSw0NC4wNzksNDQuMDc5ICBzNDQuMDc5LTE5LjY2Niw0NC4wNzktNDQuMDc5VjgzLjQxMmgxNC41OFY2Ni40NThIMzAzLjQ3eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojMDA5MEZGOyIgZD0iTTMyOS41NzksMjA0Ljh2NzIuMjIzYzAsMTcuOTcxLDE0LjU4LDMyLjU1MSwzMi41NTEsMzIuNTUxczMyLjU1MS0xNC41OCwzMi41NTEtMzIuNTUxVjIwNC44ICBIMzI5LjU3OXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZDRkNGRDsiIGQ9Ik04OC4xNTksMTQxLjA1NHYxNi45NTRoMTQuNTh2MTkzLjYxMWMwLDI0LjQxMywxOS42NjYsNDQuMDc5LDQ0LjA3OSw0NC4wNzkgIHM0NC4wNzktMTkuNjY2LDQ0LjA3OS00NC4wNzlWMTU4LjAwOGgxNC41OHYtMTYuOTU0SDg4LjE1OXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0Y4QjUxNzsiIGQ9Ik0xMTQuMjY4LDIzMS41ODd2MTIwLjAzMmMwLDE3Ljk3MSwxNC41OCwzMi41NTEsMzIuNTUxLDMyLjU1MXMzMi41NTEtMTQuNTgsMzIuNTUxLTMyLjU1MVYyMzEuNTg3ICBIMTE0LjI2OHoiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0RFREVERjsiIGQ9Ik0yNTQuNjQ0LDExNy45OTdjLTguMTM4LDAtMTQuOTE5LDcuNDYtMTQuOTE5LDE2LjYxNVY0MDUuODdoMjkuNDk5VjEzNC42MTIgIEMyNjkuNTYzLDEyNS40NTcsMjYyLjc4MSwxMTcuOTk3LDI1NC42NDQsMTE3Ljk5N3oiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNjQ2Qjc5OyIgZD0iTTM3Ny4zODgsNDA1Ljg3SDEzMS44OTljLTIwLjM0NCwwLTM2Ljk1OSwxNi42MTUtMzYuOTU5LDM2Ljk1OWgzMTkuMDY4ICAgQzQxNC4zNDcsNDIyLjE0NiwzOTcuNzMyLDQwNS44NywzNzcuMzg4LDQwNS44N3oiLz4KCTxyZWN0IHg9Ijk1LjI3OSIgeT0iMjA2LjgzNCIgc3R5bGU9ImZpbGw6IzY0NkI3OTsiIHdpZHRoPSIxMy45MDIiIGhlaWdodD0iMzcuNjM3Ii8+Cgk8cmVjdCB4PSIxODQuNzk1IiB5PSIyMDYuODM0IiBzdHlsZT0iZmlsbDojNjQ2Qjc5OyIgd2lkdGg9IjEzLjkwMiIgaGVpZ2h0PSIzNy42MzciLz4KPC9nPgo8cmVjdCB4PSIxOTcuMDAxIiB5PSIyMjAuMDU4IiBzdHlsZT0iZmlsbDojMzkzRDQ3OyIgd2lkdGg9Ijg2LjgwMyIgaGVpZ2h0PSIxMC44NSIvPgo8cmVjdCB4PSIyMzUuNjU2IiB5PSIyMTIuOTM4IiBzdHlsZT0iZmlsbDojRjFGM0Y3OyIgd2lkdGg9IjM3LjYzNyIgaGVpZ2h0PSIyNC43NTIiLz4KPGc+Cgk8cmVjdCB4PSI0MDAuMTA2IiB5PSIxMzMuOTM0IiBzdHlsZT0iZmlsbDojNjQ2Qjc5OyIgd2lkdGg9IjEzLjkwMiIgaGVpZ2h0PSIzNy42MzciLz4KCTxyZWN0IHg9IjMxMC41OTEiIHk9IjEzMy45MzQiIHN0eWxlPSJmaWxsOiM2NDZCNzk7IiB3aWR0aD0iMTMuOTAyIiBoZWlnaHQ9IjM3LjYzNyIvPgo8L2c+CjxyZWN0IHg9IjIyNS40ODMiIHk9IjE0Ny40OTciIHN0eWxlPSJmaWxsOiMzOTNENDc7IiB3aWR0aD0iODYuODAzIiBoZWlnaHQ9IjEwLjg1Ii8+CjxyZWN0IHg9IjIzNS42NTYiIHk9IjE0MC43MTUiIHN0eWxlPSJmaWxsOiNGMUYzRjc7IiB3aWR0aD0iMzcuNjM3IiBoZWlnaHQ9IjI0Ljc1MiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+    </div>
+  </div>
+</div>
+{% endblock %}

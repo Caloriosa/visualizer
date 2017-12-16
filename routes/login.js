@@ -41,6 +41,10 @@ router.post('/in', (req, res, next) => {
   });
 });
 
+router.get('/up', (req, res, next) => {
+  res.render('register', {title: "Sign up"});
+});
+
 router.get("/out", (req, res, next) => {
   if (!req.session.token) {
     logger.info("User already logged out!");
