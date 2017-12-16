@@ -1,7 +1,7 @@
 $(document).ready(function(event) {
   $("form").each(function(){
     var form = $(this);
-    form.validate();
+    form.validate({showErrors: function() {}});
     form.submit(function( event ) {
       //console.log(form.valid());
       if (form.valid() === false) {

@@ -23,7 +23,7 @@
   </ol>
   <div class="row">
     <div class="col-12 col-md">
-      <form class="rounded d-none d-md-block" action="/sign/up" method="post" id="register-form" novalidate>
+      <form class="rounded d-none d-md-block{% if errors %} was-validated{% endif %}" action="/sign/up" method="post" id="register-form" novalidate>
         <div class="form-group">
           <label for="login">Login</label>
           <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name" required>
@@ -33,12 +33,18 @@
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com">
+          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com" required>
+          <div class="invalid-feedback">
+            Please enter your valid email.
+          </div>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+          <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password" required pattern=".{6,}">
+          <div class="invalid-feedback">
+            Password must have <b>6 chars</b> or more.
+          </div>
           <small id="passwordHelp" class="form-text text-muted">Use at least one letter, one numeral, and seven characters.</small>
         </div>
         <button type="submit" class="btn btn-success btn-lg">Begin measuring</button>
