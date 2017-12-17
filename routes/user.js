@@ -1,4 +1,4 @@
-const { UserService, User } = require("@caloriosa/rest-dto");
+const { UserService, User, Util } = require("@caloriosa/rest-dto");
 const log4js = require("log4js");
 const WebError = require("../misc/WebError");
 
@@ -12,7 +12,8 @@ router.get('/@:userLogin', async (req, res, next) => {
   var userService = new UserService(req.client);
   // Is requested user me? Get me!
   if (res.locals.loggedUser && res.locals.loggedUser.login === req.params.userLogin){
-    res.render('user', {
+    res.render('user/profile', {
+      title: "@" + res.locals.loggedUser.login,
       user: res.locals.loggedUser
     });
     return;
@@ -30,12 +31,59 @@ router.get('/@:userLogin', async (req, res, next) => {
   }
   let user = users.first();
   logger.trace(user);
-  res.render('user', {
+  res.render('user/profile', {
+    title: "@" + user.login,
     user: user
   });
   } catch (err) {
     next(new Error(err.message));
   }
+});
+
+router.get('/@:userLogin/edit', (req, res, next) => {
+  if (!res.locals.loggedUser) {
+    next(new WebError("You are not allowed edit this profile!", 403));
+    return;
+  }
+  if (res.locals.loggedUser.login !== req.params.userLogin) {
+    res.redirect(`/@${res.locals.loggedUser.login}/edit`);
+    return;
+  }
+  res.render('user/edit', {
+    title: "Edit profile",
+    user: res.locals.loggedUser
+  });
+});
+
+router.post('/@:userLogin/edit', async (req, res, next) => {
+  if (!res.locals.loggedUser) {
+    next(new WebError("You are not allowed edit this profile!", 403));
+    return;
+  }
+
+  req.checkBody('email', 'Please enter your valid email.').isEmail();
+  
+  var errors = req.validationErrors();
+  if (errors) {
+    res.render('user/edit', {title: "Edit profile", errors: errors});
+    return;
+  }
+
+  var userService = new UserService(req.client);
+  var user = res.locals.loggedUser;
+
+  var [err, user ] = await Util.saferize(userService.setMe({
+    email: req.body.email, 
+    name: req.body.name
+  }));
+  if (err) {
+    next(err);
+    return;
+  }
+  logger.info(`User profile updated: ${user.login}`);
+  logger.trace(user);
+  req.flash("success", "Your profile has been updated!");
+  res.redirect("edit");
 });
 
 module.exports = router;

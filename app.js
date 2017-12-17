@@ -116,6 +116,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  if (typeof err != "object") {
+    err = new Error(err);
+  }
   if (err.constructor.name != "WebError") {
     let _err = new WebError("Server Error");
     _err.status = 500;
