@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var log4js = require("log4js");
-var { AuthService, AuthInfo, typedefs } = require("@caloriosa/rest-dto");
+var WebError = require("../misc/WebError");
+var { UserService, User, AuthService, AuthInfo, Util, typedefs } = require("@caloriosa/rest-dto");
 
-var logger = log4js.getLogger("Auth");
+var logger = log4js.getLogger("Sign");
 
 router.get('/in', (req, res, next) => {
-  res.render('login', {title: "Sign in"});
+  res.render('sign/login', {title: "Sign in"});
 });
 
 router.post('/in', (req, res, next) => {
@@ -15,7 +16,7 @@ router.post('/in', (req, res, next) => {
 
   var errors = req.validationErrors();
   if (errors) {
-    res.render('login', {title: "Sign in", errors: errors});
+    res.render('sign/login', {title: "Sign in", errors: errors});
     return;
   }
   var authService = new AuthService(req.client);
@@ -42,7 +43,39 @@ router.post('/in', (req, res, next) => {
 });
 
 router.get('/up', (req, res, next) => {
-  res.render('register', {title: "Sign up"});
+  res.render('sign/register', {title: "Sign up"});
+});
+
+router.post('/up', async (req, res, next) => {
+  req.checkBody('login', 'Please choose your login name.').notEmpty();
+  req.checkBody('email', 'Please enter your valid email.').isEmail();
+  req.checkBody('password', 'Password must have <b>6 chars</b> or more.').isLength({ min: 6 });
+
+  var errors = req.validationErrors();
+  if (errors) {
+    res.render('sign/register', {title: "Sign up", errors: errors, fill: req.body});
+    return;
+  }
+  var userService = new UserService(req.client);
+  var [err, user ] = await Util.saferize(userService.register(
+    User.precreate(req.body.login, req.body.password, req.body.email)
+  ));
+  if (err && err.code == typedefs.ApiStatuses.DUPLICATED) {
+    req.flash("error", "User login already taken!");
+    res.render('sign/register', {title: "Sign up", fill: req.body });
+    return;
+  }
+  if (err) {
+    next(err);
+    return;
+  }
+  logger.trace(user);
+  req.flash('success', 'Your are registered as <b>' + user.login + "</b>! Before login you must activate your account. Check your email for activation code.");
+  res.redirect("/sign/verify");
+});
+
+router.get('/verify', (req, res, next) => {
+  res.render('sign/verify', {title: "Verify email & activate account"});
 });
 
 router.get("/out", (req, res, next) => {

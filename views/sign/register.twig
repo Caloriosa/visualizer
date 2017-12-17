@@ -21,19 +21,27 @@
       Sign in & create your first device
     </li>
   </ol>
+  {% include 'snippets/flashes.twig' %}
   <div class="row">
     <div class="col-12 col-md">
-      <form class="rounded d-none d-md-block{% if errors %} was-validated{% endif %}" action="/sign/up" method="post" id="register-form" novalidate>
+      <form class="rounded {% if errors %} was-validated{% endif %}" action="/sign/up" method="post" id="register-form" novalidate>
+        {% if errors %}
+        {% for error in errors %}
+        <div class="alert alert-danger">
+          {{error.msg}}
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="form-group">
           <label for="login">Login</label>
-          <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name" required>
+          <input type="text" class="form-control form-control-lg" name="login" id="login" placeholder="Choose login name" {% if fill.login %}value="{{fill.login}}"{% endif %} required>
           <div class="invalid-feedback">
             Please choose your login name.
           </div>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com" required>
+          <input type="email" class="form-control form-control-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="you@example.com" {% if fill.email %}value="{{fill.email}}"{% endif %} required>
           <div class="invalid-feedback">
             Please enter your valid email.
           </div>
@@ -41,7 +49,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password" required pattern=".{6,}">
+          <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Create password" required pattern=".{6,}">
           <div class="invalid-feedback">
             Password must have <b>6 chars</b> or more.
           </div>

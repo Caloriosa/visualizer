@@ -15,16 +15,16 @@
         <form class="landing-sign-up rounded d-none d-md-block"action="/sign/up" method="post">
           <div class="form-group">
             <label for="login">Login</label>
-            <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name">
+            <input type="text" class="form-control form-control-lg" name="login" id="login" placeholder="Choose login name">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com">
+            <input type="email" class="form-control form-control-lg" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+            <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Create password">
             <small id="passwordHelp" class="form-text text-muted">Use at least one letter, one numeral, and seven characters.</small>
           </div>
           <button type="submit" class="btn btn-success bg-gradient-success btn-lg btn-block">Begin measuring</button>
@@ -229,15 +229,15 @@
     <form class="form-inline justify-content-center" action="/sign/up" method="post">
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
         <label class="sr-only" for="login">Login</label>
-        <input type="text" class="form-control form-control-lg" id="login" placeholder="Choose login name">
+        <input type="text" class="form-control form-control-lg" name="login" id="login" placeholder="Choose login name">
       </div>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
         <label class="sr-only" for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email address">
+        <input type="email" class="form-control form-control-lg" name="email" id="email" aria-describedby="emailHelp" placeholder="Your email address">
       </div>
       <div class="input-group mb-2 mr-sm-2 mb-sm-0">
         <label class="sr-only" for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Create password">
+        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Create password">
       </div>
       <button type="submit" class="btn btn-success">Begin measuring</button>
     </form>
