@@ -24,7 +24,7 @@
   {% include 'snippets/flashes.twig' %}
   <div class="row">
     <div class="col-12 col-md-7">
-      <form class="{% if errors %} was-validated{% endif %}" action="/sign/verify" method="post" id="register-form" novalidate>
+      <form action="/sign/verify" method="post" id="register-form" novalidate>
         {% if errors %}
         {% for error in errors %}
         <div class="alert alert-danger">
