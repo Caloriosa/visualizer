@@ -31,7 +31,7 @@ router.post('/in', (req, res, next) => {
     res.redirect("/");
     return;
   }).catch(err => { 
-    logger.error(err);
+    logger.error(err.message);
     if (err.status && err.status.code == typedefs.ApiStatuses.INVALID_CREDENTIALS) {
       req.flash("error", "Wrong username or invalid password");
       res.redirect("/sign/in");
