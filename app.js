@@ -12,7 +12,7 @@ var twig = require('twig');
 var MemcachedStore = require('connect-memcached')(session);
 var flash = require('connect-flash');
 
-var config = require("./config/factory");
+var config = require("config");
 var { caloriosa, renderOverhead } = require("./misc/middleware");
 var WebError = require("./misc/WebError");
 
@@ -43,9 +43,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(session(config.sessOptions))
+app.use(session(config.session))
 app.use(flash());
-app.use(sassMiddleware(config.sassOptions));
+app.use(sassMiddleware(config.sass));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/vendor', express.static(__dirname + '/node_modules/jquery/dist'));
@@ -54,7 +54,7 @@ app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'
 app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts'));
 
 app.use(renderOverhead);
-app.use(caloriosa(config.clientOptions));
+app.use(caloriosa(config.client));
 
 app.use('/', index);
 app.use('/', user);

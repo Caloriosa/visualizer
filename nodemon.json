@@ -1,5 +1,5 @@
 {
   "verbose": true,
   "ignore": ["*.test.js"],
-  "ext": "js json twig sass scss"
+  "ext": "js json twig sass scss yaml yml"
 }
