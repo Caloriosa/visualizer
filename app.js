@@ -54,7 +54,7 @@ app.use('/vendor', express.static(__dirname + '/node_modules/bootstrap/dist/css'
 app.use('/fonts', express.static(__dirname + '/node_modules/font-awesome/fonts'));
 
 app.use(renderOverhead);
-app.use(caloriosa);
+app.use(caloriosa(config.clientOptions));
 
 app.use('/', index);
 app.use('/', user);
