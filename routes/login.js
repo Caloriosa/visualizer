@@ -28,7 +28,14 @@ router.post('/in', (req, res, next) => {
     req.session.save();
     // Redirect
     logger.info(`Login success! UserID: ${authInfo.identityId}`);
-    res.redirect("/");
+    if (req.session.backlink) {
+      let linkBack = req.session.backlink;
+      req.session.linkBack = null;
+      logger.info("Redirecting to backlink: " + linkBack);
+      res.redirect(linkBack);
+    } else {
+      res.redirect("/");
+    }
     return;
   }).catch(err => { 
     logger.error(err.message);

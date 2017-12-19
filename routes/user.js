@@ -1,6 +1,7 @@
 const { UserService, User, Util } = require("@caloriosa/rest-dto");
 const log4js = require("log4js");
 const WebError = require("../misc/WebError");
+const { isAuthenticated } = require("../misc/middleware");
 
 var express = require('express');
 var router = express.Router();
@@ -26,7 +27,7 @@ router.get('/@:userLogin', async (req, res, next) => {
     }
   });
   if (!users.size) {
-    next(new WebError("User Not Found!", 404));
+    next(new WebError("Page Not Found!", 404));
     return;
   }
   let user = users.first();
@@ -40,22 +41,14 @@ router.get('/@:userLogin', async (req, res, next) => {
   }
 });
 
-router.get('/settings', (req, res, next) => {
-  if (!res.locals.loggedUser) {
-    res.redirect("/sign/in");
-    return;
-  }
+router.get('/settings', isAuthenticated, (req, res, next) => {
   res.render('user/edit', {
     title: "Edit profile",
     user: res.locals.loggedUser
   });
 });
 
-router.post('/settings', async (req, res, next) => {
-  if (!res.locals.loggedUser) {
-    res.redirect("/sign/in");
-    return;
-  }
+router.post('/settings', isAuthenticated, async (req, res, next) => {
 
   req.checkBody('email', 'Please enter your valid email.').isEmail();
   
