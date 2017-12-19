@@ -5,7 +5,7 @@
   <h2>Edit my profile</h2>
   <p class="lead">Change your profile information</p>
   {% include 'snippets/flashes.twig' %}
-  <form class="rounded" action="edit" method="post" id="register-form" novalidate>
+  <form class="rounded" action="settings" method="post" id="register-form" novalidate>
     {% if errors %}
     {% for error in errors %}
     <div class="alert alert-danger">

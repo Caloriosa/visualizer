@@ -26,7 +26,7 @@ router.get('/@:userLogin', async (req, res, next) => {
     }
   });
   if (!users.size) {
-    next(new WebError("User not found!", 404));
+    next(new WebError("User Not Found!", 404));
     return;
   }
   let user = users.first();
@@ -40,13 +40,9 @@ router.get('/@:userLogin', async (req, res, next) => {
   }
 });
 
-router.get('/@:userLogin/edit', (req, res, next) => {
+router.get('/settings', (req, res, next) => {
   if (!res.locals.loggedUser) {
-    next(new WebError("You are not allowed edit this profile!", 403));
-    return;
-  }
-  if (res.locals.loggedUser.login !== req.params.userLogin) {
-    res.redirect(`/@${res.locals.loggedUser.login}/edit`);
+    next(new WebError("Unauthorized", 401));
     return;
   }
   res.render('user/edit', {
@@ -55,9 +51,9 @@ router.get('/@:userLogin/edit', (req, res, next) => {
   });
 });
 
-router.post('/@:userLogin/edit', async (req, res, next) => {
+router.post('/settings', async (req, res, next) => {
   if (!res.locals.loggedUser) {
-    next(new WebError("You are not allowed edit this profile!", 403));
+    next(new WebError("Unauthorized", 401));
     return;
   }
 
