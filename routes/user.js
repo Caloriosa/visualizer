@@ -42,7 +42,7 @@ router.get('/@:userLogin', async (req, res, next) => {
 
 router.get('/settings', (req, res, next) => {
   if (!res.locals.loggedUser) {
-    next(new WebError("Unauthorized", 401));
+    res.redirect("/sign/in");
     return;
   }
   res.render('user/edit', {
@@ -53,7 +53,7 @@ router.get('/settings', (req, res, next) => {
 
 router.post('/settings', async (req, res, next) => {
   if (!res.locals.loggedUser) {
-    next(new WebError("Unauthorized", 401));
+    res.redirect("/sign/in");
     return;
   }
 
