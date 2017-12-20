@@ -11,7 +11,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area {
   background: gray("600");
-  border-bottom: 1px solid darken(gray("600"), $err-border-darken);
   padding: 6em 0;
   .error-heading {
     margin-bottom: 0.25em;
@@ -38,7 +37,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area.error-401 {
   background: $orange;
-  border-bottom-color: darken($orange, $err-border-darken);
   .error-heading {
     color: darken($orange, $err-heading-darken);
   }
@@ -53,7 +51,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area.error-403 {
   background: $yellow;
-  border-bottom-color: darken($yellow, $err-border-darken);
   .error-heading {
     color: darken($yellow, $err-heading-darken);
   }
@@ -68,7 +65,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area.error-404, .error-area.error-410 {
   background: $cyan;
-  border-bottom-color: darken($cyan, $err-border-darken);
   .error-heading {
     color: darken($cyan, $err-heading-darken);
   }
@@ -83,7 +79,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area.error-500 {
   background: $red;
-  border-bottom-color: darken($red, $err-border-darken);
   .error-heading {
     color: darken($red, $err-heading-darken);
   }
@@ -98,7 +93,6 @@ $err-stacktrace-bg-darken: 10%;
 
 .error-area.error-503 {
   background: $pink;
-  border-bottom-color: darken($pink, $err-border-darken);
   .error-heading {
     color: darken($pink, $err-heading-darken);
   }
