@@ -34,9 +34,9 @@
         {% endif %}
         <div class="form-group">
           <label for="login">Login</label>
-          <input type="text" class="form-control form-control-lg" name="login" id="login" placeholder="Choose login name" {% if fill.login %}value="{{fill.login}}"{% endif %} required>
+          <input type="text" class="form-control form-control-lg" name="login" id="login" placeholder="Choose login name" {% if fill.login %}value="{{fill.login}}"{% endif %} required pattern="[A-z0-9]{6,}">
           <div class="invalid-feedback">
-            Please choose your login name.
+            Please choose your login name about <b>6 chars</b> or more. Only alphanumeric chars is allowed!
           </div>
         </div>
         <div class="form-group">
@@ -49,9 +49,9 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Create password" required pattern=".{6,}">
+          <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Create password" required pattern=".{8,}">
           <div class="invalid-feedback">
-            Password must have <b>6 chars</b> or more.
+            Password must have <b>8 chars</b> or more.
           </div>
           <small id="passwordHelp" class="form-text text-muted">Use at least one letter, one numeral, and seven characters.</small>
         </div>
