@@ -19,7 +19,7 @@ config = Object.assign(defaults, config);
 const clientOptions = {
     url: process.env.SERVICE_URL || config.client.url,
     proxy: config.client.proxy,
-    appSign: process.env.APP_SIGN || config.client.appSign
+    appSignature: process.env.APP_SIGNATURE || config.client.appSignature
 };
 
 /**
