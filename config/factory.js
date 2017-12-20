@@ -27,8 +27,8 @@ const clientOptions = {
  */
 const sassOptions = {
     /* Options */
-    src: path.join(__dirname, "public"),
-    dest: path.join(__dirname, 'public'),
+    src: path.join(__dirname, "../public"),
+    dest: path.join(__dirname, '../public'),
     debug: config.sass.debug,
     outputStyle: config.sass.outputStyle,
     error: (err) => {
