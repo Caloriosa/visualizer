@@ -1,8 +1,15 @@
 const { Client, UserService } = require("@caloriosa/rest-dto");
+const log4js = require("log4js");
 
-function clientHandle (data, response) {
-    apiLogger = log4js.getLogger("API-call");
-    apiLogger.info(`${response.req.method} ${response.responseUrl} - ${response.statusCode} ${data.status.code} "${data.status.message}"`);
+var logger = log4js.getLogger("Middleware");
+
+function clientHandle (data, response, err) {
+    apiLogger = log4js.getLogger("API<Response>");
+    if (err) {
+        apiLogger.error(err.message);
+        return;
+    }
+    apiLogger.info(`${response.responseUrl} - ${response.statusCode} ${data.status.code}: "${data.status.message}" (${response.req.method})`);
 }
 
 function createClient(clientOptions = {}, token = null) {
@@ -25,9 +32,11 @@ exports.caloriosa = function caloriosa(clientOptions = {}) {
     return (req, res, next) => {
         req.client = createClient(clientOptions, req.session.token || null);
         if (!req.session.token) {
+            logger.debug("No token aquired - User unlogged.");
             next();
             return;
         }
+        logger.debug("Token aquired - User logged.");
         let userService = new UserService(req.client);
         userService.fetchMe().then(user => {
             res.locals.loggedUser = user;

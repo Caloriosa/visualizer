@@ -1,2 +1,4 @@
 sass:
   debug: true
+session:
+  memcached: true

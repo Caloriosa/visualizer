@@ -24,10 +24,9 @@
   </ol>
   {% include 'snippets/flashes.twig' %}
   <p class="lead mb-4 thank-you text-center">
-    Thank you for registration! Your account is not active yet. 
-    Please check your email and verify your account with an activation link or put activation code bellow:
+    Check your email and verify your account with an activation link or put your code bellow:
   </p>
-  <form action="/sign/verify" method="post" id="register-form" novalidate>
+  <form action="verify" method="get" id="register-form" novalidate>
     {% if errors %}
     {% for error in errors %}
     <div class="alert alert-danger">
@@ -38,7 +37,7 @@
     <div class="row">
       <label class="col-12 col-md-3 col-form-label" for="activation-code">Activation code: </label>
       <div class="col-12 col-md-9 form-group">
-        <input type="text" class="form-control" name="activation-code" id="activation-code" placeholder="Put your activation code" required>
+        <input type="text" class="form-control" name="key" id="activation-code" placeholder="Put your activation code" required>
         <div class="invalid-feedback">
           Invalid activation code!
         </div>

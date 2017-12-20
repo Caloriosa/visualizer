@@ -1,5 +1,6 @@
 const path = require("path");
 const YAML = require('yamljs');
+var merge = require('deepmerge')
 var log4js = require('log4js');
 
 var logger = log4js.getLogger("ConfigFactory");
@@ -11,7 +12,9 @@ try {
 } catch (err) {
     logger.warn("Can't load configuration - " + err.message);
 }
-config = Object.assign(defaults, config);
+config = merge(defaults, config);
+
+logger.trace(config);
 
 /**
  * Client configuration

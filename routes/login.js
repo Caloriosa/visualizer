@@ -21,7 +21,7 @@ router.post('/in', (req, res, next) => {
   }
   var authService = new AuthService(req.client);
   authService.authenticate(req.body.login, req.body.password).then(authInfo => {
-    logger.debug(authInfo);
+    logger.trace(authInfo);
     // Setup session logged in
     req.session.token = authInfo.token;
     req.session.identityId = authInfo.identityId;
@@ -54,9 +54,9 @@ router.get('/up', (req, res, next) => {
 });
 
 router.post('/up', async (req, res, next) => {
-  req.checkBody('login', 'Please choose your login name. Login must have <b>6 chars</b> or more.').notEmpty();
+  req.checkBody('login', 'Please choose your login name. Login must have <b>6 chars</b> or more.').isLength({ min: 6 });
   req.checkBody('email', 'Please enter your valid email.').isEmail();
-  req.checkBody('password', 'Password must have <b>8 chars</b> or more.').isLength({ min: 6 });
+  req.checkBody('password', 'Password must have <b>8 chars</b> or more.').isLength({ min: 8 });
 
   var errors = req.validationErrors();
   if (errors) {
@@ -81,8 +81,28 @@ router.post('/up', async (req, res, next) => {
   res.redirect("/sign/verify");
 });
 
-router.get('/verify', (req, res, next) => {
-  res.render('sign/verify', {title: "Verify email & activate account"});
+router.get('/verify', async (req, res, next) => {
+  let key = req.query.key;
+  if (!key) {
+    res.render('sign/verify', {title: "Verify email & activate account"});
+    return;
+  }
+  let userService = new UserService(req.client);
+  let [ err, user ] = await Util.saferize(userService.activate(key));
+  if (err && err.code == typedefs.ApiStatuses.INVALID_TOKEN) {
+    logger.warn("Invalid activation code: " + key);
+    req.flash("error", "Invalid activation code.");
+    res.render('sign/verify', {title: "Verify email & activate account"});
+    return;
+  }
+  if (err) {
+    next(err);
+    return;
+  }
+  logger.info("Account activated: " + user.login);
+  logger.trace(user);
+  req.flash("success", "Your account has been activated! Now you can sign in.");
+  res.redirect("in");
 });
 
 router.get("/out", (req, res, next) => {
@@ -92,14 +112,14 @@ router.get("/out", (req, res, next) => {
   }
   var authService = new AuthService(req.client);
   authService.logout().then(metaInfo => {
-    logger.debug(metaInfo);
+    logger.trace(metaInfo);
     req.session.regenerate(err => {
       if (err) {
         logger.error(err.message);
         next(err);
         return;
       }
-      logger.info("Session regenerated!");
+      logger.info("User logged out - Session regenerated!");
       req.flash("info", "You are been sucessfully logged out!");
       res.redirect("/sign/in");
       return;

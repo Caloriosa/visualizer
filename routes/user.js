@@ -72,7 +72,7 @@ router.post('/settings', isAuthenticated, async (req, res, next) => {
   logger.info(`User profile updated: ${user.login}`);
   logger.trace(user);
   req.flash("success", "Your profile has been updated!");
-  res.redirect("edit");
+  res.redirect("settings");
 });
 
 module.exports = router;
