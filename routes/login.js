@@ -54,9 +54,9 @@ router.get('/up', (req, res, next) => {
 });
 
 router.post('/up', async (req, res, next) => {
-  req.checkBody('login', 'Please choose your login name.').notEmpty();
+  req.checkBody('login', 'Please choose your login name. Login must have <b>6 chars</b> or more.').notEmpty();
   req.checkBody('email', 'Please enter your valid email.').isEmail();
-  req.checkBody('password', 'Password must have <b>6 chars</b> or more.').isLength({ min: 6 });
+  req.checkBody('password', 'Password must have <b>8 chars</b> or more.').isLength({ min: 6 });
 
   var errors = req.validationErrors();
   if (errors) {

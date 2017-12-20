@@ -19,13 +19,13 @@
     <li>
       <i class="fa fa-sign-in" aria-hidden="true"></i>
       <strong class="step">Step 3:</strong>
-      Sign in & create your first device
+      Sign in &amp; Begin measuring
     </li>
   </ol>
   {% include 'snippets/flashes.twig' %}
-  <p class="lead mb-4">
+  <p class="lead mb-4 thank-you text-center">
     Thank you for registration! Your account is not active yet. 
-    Please check your email and verify your account with an activation link or put actvation token bellow:
+    Please check your email and verify your account with an activation link or put activation code bellow:
   </p>
   <form action="/sign/verify" method="post" id="register-form" novalidate>
     {% if errors %}
