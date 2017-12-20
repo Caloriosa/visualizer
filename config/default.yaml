@@ -1,0 +1,13 @@
+client:
+  url: http://localhost:6060
+  appSign: null
+  proxy: null
+sass:
+  debug: false
+  outputStyle: 'compressed'
+session:
+  secret: 'keyboard cat'
+  resave: false
+  saveUninitialized: true
+  memcached: false
+  hosts: null

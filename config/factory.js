@@ -1,13 +1,25 @@
 const path = require("path");
+const YAML = require('yamljs');
 var log4js = require('log4js');
 
 var logger = log4js.getLogger("ConfigFactory");
+
+var defaults = YAML.load(path.join(__dirname, "default.yaml"));
+var config = {} 
+try {
+    config = YAML.load(path.join(__dirname, (process.env.NODE_ENV || "development") + ".yaml"));
+} catch (err) {
+    logger.warn("Can't load configuration - " + err.message);
+}
+config = Object.assign(defaults, config);
 
 /**
  * Client configuration
  */
 const clientOptions = {
-    url: process.env.SERVICE_URL || "http://localhost:6060"
+    url: process.env.SERVICE_URL || config.client.url,
+    proxy: config.client.proxy,
+    appSign: process.env.APP_SIGN || config.client.appSign
 };
 
 /**
@@ -17,8 +29,8 @@ const sassOptions = {
     /* Options */
     src: path.join(__dirname, "public"),
     dest: path.join(__dirname, 'public'),
-    debug: true,
-    outputStyle: 'compressed',
+    debug: config.sass.debug,
+    outputStyle: config.sass.outputStyle,
     error: (err) => {
         let _logger = log4js.getLogger("SassCompiler")
         _logger.error(err);
@@ -32,19 +44,8 @@ const sassOptions = {
 /**
  * Session configuration
  */
-var sessOptions = {
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-    };
-
-if (process.env.SESSION_STORE) {
-    // Init memcached session store if host defined by environment
-    logger.info("Using memcached session store: " + process.env.SESSION_STORE);
-    sessOptions.store = new MemcachedStore({hosts: [process.env.SESSION_STORE]});
-}
-
-logger.info("Service URL: " + clientOptions.url);
+var sessOptions = config.session;
+sessOptions.hosts = process.env.SESSION_STORE ? [process.env.SESSION_STORE] : config.session.hosts;
 
 exports.clientOptions = clientOptions;
 exports.sassOptions = sassOptions;

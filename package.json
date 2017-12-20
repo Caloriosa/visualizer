@@ -30,6 +30,7 @@
     "popper.js": "^1.12.9",
     "serve-favicon": "~2.4.5",
     "twig": "^0.10.3",
-    "twig-markdown": "^0.1.2"
+    "twig-markdown": "^0.1.2",
+    "yamljs": "^0.3.0"
   }
 }

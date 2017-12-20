@@ -25,6 +25,17 @@ var logger = log4js.getLogger();
 var accessLogger = log4js.getLogger("Access");
 var app = express();
 
+
+/**
+ * Setup memcached session store
+ */
+logger.debug("Memcached session store enabled: " + config.sessOptions.memcached);
+if (config.sessOptions.memcached) {
+  // Init memcached session store if host defined by environment
+  logger.info("Using memcached session store: " + config.sessOptions.hosts);
+  config.sessOptions.store = new MemcachedStore({hosts: config.sessOptions.hosts});
+}
+
 /**
  * Setup Twig extensions
  */
@@ -94,5 +105,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', { title: err.message});
 });
+
+logger.info("Service URL: " + config.clientOptions.url);
 
 module.exports = app;
