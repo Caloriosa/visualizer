@@ -32,7 +32,7 @@ h1, h2, h3 {
   background: theme-color("dark");
   font-size: 14px;
   border-top: 1px solid darken(theme-color("dark"), 12%);
-  @include box-shadow(1px, 0px, 5px, darken(theme-color("dark"), 12%));
+  @include box-shadow(1px, 0px, 2px, darken(theme-color("dark"), 5%));
   a {
     color: $light;
   }
