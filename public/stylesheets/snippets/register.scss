@@ -53,3 +53,14 @@
 .features-list {
   margin-left: 4em;
 }
+
+@media (max-width: 768px) {
+  .steps {
+    li {
+      display: none;
+    }
+    li.current {
+      display: table-cell;
+    }
+  }
+}
