@@ -24,6 +24,10 @@
   {% include 'snippets/flashes.twig' %}
   <div class="row">
     <div class="col-12 col-md-7">
+      <p class="lead mb-4">
+        Thank you for registration! Your account is not active yet. 
+        Please check your email and verify your account with an activation link or put actvation token bellow:
+      </p>
       <form action="/sign/verify" method="post" id="register-form" novalidate>
         {% if errors %}
         {% for error in errors %}
