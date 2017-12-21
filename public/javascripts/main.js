@@ -13,7 +13,9 @@ $(document).ready(function(event) {
   });
 });
 
-function drawLineChart(elementID, dataUrl) {
+function drawLineChart(elementID) {
+  var el = document.getElementById(elementID);
+  var dataUrl = el.getAttribute("data-source");
   var options = {
     type: 'line',
     data: []
@@ -30,6 +32,6 @@ function drawLineChart(elementID, dataUrl) {
     var myLineChart = new Chart(ctx, options);
   }).fail(function(err) {
     console.log("error while loading graph " + elementID + " datasource: " + dataUrl);
-    document.getElementById(elementID).innerText = "Error while loading graph!";
+    el.innerText = "Error while loading graph!";
   });
 }
