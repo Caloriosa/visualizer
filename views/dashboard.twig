@@ -51,11 +51,17 @@
   </div>
   <div class="row">
     <div class="col">
-      1 of 2
+      <div id="dashboard"></div>
     </div>
     <div class="col">
       2 of 2
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="/bundle/app.bundle.js"></script>
+<script>renderDashboard("dashboard");</script>
 {% endblock %}

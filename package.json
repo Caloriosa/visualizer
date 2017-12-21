@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "browserify client/app.js -t babelify --outfile public/bundle/app.bundle.js",
     "start": "sh -c 'NODE_ENV=\"production\" node ./bin/www'",
     "start:watch": "nodemon ./bin/www",
     "start:dev": "sh -c 'WATCH=\"true\" exec ./bin/dev'",
@@ -29,9 +30,21 @@
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^1.12.5",
     "popper.js": "^1.12.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "recharts": "^1.0.0-beta.6",
     "serve-favicon": "~2.4.5",
     "twig": "^0.10.3",
     "twig-markdown": "^0.1.2",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "uglify-js": "^3.2.2"
   }
 }

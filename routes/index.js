@@ -3,11 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (!res.locals.loggedUser) {
-    res.render('index', { title: 'Home sensor measuring'});
+  if (res.locals.loggedUser) {
+    res.redirect("/dashboard");
     return;
   }
-  res.render('dashboard', { title: 'Dashboard'});
+  res.render('index', { title: 'Home sensor measuring'});
 });
 
 module.exports = router;
