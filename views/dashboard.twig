@@ -51,8 +51,12 @@
   </div>
   <div class="row">
     <div class="col">
-        <canvas id="myLineChart" width="740" height="200"></canvas>
-        <canvas id="myLineChart2" width="740" height="200"></canvas>
+        <div id="myLineChart">
+            <canvas id="myLineChart-canvas" width="740" height="200"></canvas>
+        </div>
+        <div id="myLineChart2">
+            <canvas id="myLineChart2-canvas" width="740" height="200"></canvas>
+        </div>
     </div>
     <div class="col">
       2 of 2
@@ -64,31 +68,8 @@
 {% block scripts %}
 {{parent()}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 <script>
-    function drawLineChart(elementID, dataUrl) {
-
-      var options = {
-        type: 'line',
-        data: []
-      };
-  
-      var jsonData = $.ajax({
-        url: dataUrl,
-        dataType: 'json'
-      }).done(function (results) {
-        options.data = results
-        // Get the context of the canvas element we want to select
-        var ctx = document.getElementById(elementID);
-  
-        // Instantiate a new chart
-        var myLineChart = new Chart(ctx, options);
-      }).fail(function(err) {
-        console.log("error while loading graph " + elementID + " datasource: " + dataUrl);
-      });
-    }
-  
     drawLineChart("myLineChart", "/ajax/graph");
     drawLineChart("myLineChart2", "/ajax/graph2");
-  </script>
+</script>
 {% endblock %}
