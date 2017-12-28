@@ -1,61 +1,12 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-<div class="container">
-  <h2>Welcome, {% if loggedUser.name %}{{loggedUser.name}}{% else %}{{loggedUser.login}}{% endif %}!</h2>
-  <div class="row">
-    <div class="col">
-      <div class="card stat-card bg-success">
-        <div class="card-body">
-          <span class="title">25°C</span>
-          <span class="subtitle">Inside</span>
-        </div>
-        <div class="card-icon">
-          <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card stat-card bg-danger">
-        <div class="card-body">
-          <span class="title">4</span>
-          <span class="subtitle">Devices</span>
-        </div>
-        <div class="card-icon">
-          <i class="fa fa-microchip" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card stat-card bg-warning">
-        <div class="card-body">
-          <span class="title">4582</span>
-          <span class="subtitle">values</span>
-        </div>
-        <div class="card-icon">
-          <i class="fa fa-line-chart" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card stat-card bg-secondary">
-        <div class="card-body">
-          <span class="title">3</span>
-          <span class="subtitle">Messages</span>
-        </div>
-        <div class="card-icon">
-          <i class="fa fa-inbox " aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      1 of 2
-    </div>
-    <div class="col">
-      2 of 2
-    </div>
-  </div>
+<div id="app" class="container">
+  
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="/dist/dashboard.bundle.js"></script>
 {% endblock %}

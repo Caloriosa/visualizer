@@ -4,7 +4,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: [ './client/main/main.js', './client/main/scss/style.scss' ]
+    main: [ './client/main/main.js', './client/main/scss/style.scss' ],
+    dashboard: './client/dashboard/main.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
