@@ -59,11 +59,6 @@ app.use(flash());
 app.use(sassMiddleware(config.sassOptions));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-app.use('/vendor', express.static(__dirname + '/../node_modules/bootstrap/dist/js'));
-app.use('/vendor', express.static(__dirname + '/../node_modules/jquery/dist'));
-app.use('/vendor', express.static(__dirname + '/../node_modules/jquery-validation/dist'));
-app.use('/vendor', express.static(__dirname + '/../node_modules/bootstrap/dist/css'));
-app.use('/fonts', express.static(__dirname + '/../node_modules/font-awesome/fonts'));
 
 app.use(renderOverhead);
 app.use(caloriosa(config.clientOptions));

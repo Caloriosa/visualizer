@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "build": "webpack --progress --hide-modules",
-    "start": "sh -c 'NODE_ENV=\"production\" node ./bin/www'",
-    "start:watch": "nodemon ./bin/www",
-    "start:dev": "sh -c 'WATCH=\"true\" exec ./bin/dev'",
-    "start:dev-unwatch": "exec ./bin/dev"
+    "start": "npm run build && node ./bin/www",
+    "start:prod": "cross-env NODE_ENV=\"production\" npm start",
+    "start:dev": "cross-env NODE_ENV=\"development\" npm run build && bin/dev"
   },
   "dependencies": {
     "@caloriosa/rest-dto": "file:modules/rest-dto",
