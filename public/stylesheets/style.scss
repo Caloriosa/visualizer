@@ -3,10 +3,12 @@
  * Created by PurrplingCat
  */
 
+$fa-font-path: "~font-awesome/fonts";
+
 @import "defaults.scss";
 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "node_modules/font-awesome/scss/font-awesome.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome.scss";
 @import "../fonts/barlow/barlow.css";
 
 @import "util.scss";
