@@ -1,3 +1,6 @@
+import 'bootstrap'
+import 'jquery-validation'
+
 $(document).ready(function(event) {
   $("form").each(function(){
     var form = $(this);
