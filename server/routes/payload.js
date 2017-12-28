@@ -24,7 +24,10 @@ router.get('*', function(req, res, next){
     }).catch(err => {
         let message;
         res.status(err.response ? err.response.status : 500)
-        res.send({error: err.message});
+        res.send({
+            error: err.message,
+            code: err.code
+        });
     });
 });
 
