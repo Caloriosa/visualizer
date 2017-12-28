@@ -2,9 +2,6 @@ client:
   url: http://localhost:6060
   appSignature: null
   proxy: null
-sass:
-  debug: false
-  outputStyle: 'compressed'
 session:
   secret: 'keyboard cat'
   resave: false

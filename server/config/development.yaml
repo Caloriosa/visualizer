@@ -1,4 +1,2 @@
-sass:
-  debug: true
 session:
   memcached: false
