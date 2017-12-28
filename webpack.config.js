@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: [ './public/stylesheets/style.scss' ]
+    main: [ './client/main/main.js', './client/main/scss/style.scss' ]
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -83,6 +83,11 @@ module.exports = {
       filename: '[name].bundle.css',
       allChunks: true,
     }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      Popper: ['popper.js', 'default'],
+     })
   ],
   resolve: {
     alias: {
