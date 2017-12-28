@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session')
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var sassMiddleware = require('node-sass-middleware');
 var log4js = require('log4js');
 var twigMarkdown = require('twig-markdown');
 var twig = require('twig');
@@ -56,7 +55,6 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(session(config.sessOptions))
 app.use(flash());
-app.use(sassMiddleware(config.sassOptions));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 

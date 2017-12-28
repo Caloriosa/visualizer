@@ -26,30 +26,10 @@ const clientOptions = {
 };
 
 /**
- * Sass configuration
- */
-const sassOptions = {
-    /* Options */
-    src: path.join(__dirname, "../public"),
-    dest: path.join(__dirname, '../public'),
-    debug: config.sass.debug,
-    outputStyle: config.sass.outputStyle,
-    error: (err) => {
-        let _logger = log4js.getLogger("SassCompiler")
-        _logger.error(err);
-    },
-    log: (severity, key, value) => {
-        let _logger = log4js.getLogger("SassCompiler")
-        _logger.debug(`${severity} ${key} ${value}`);
-    }
-}
-
-/**
  * Session configuration
  */
 var sessOptions = config.session;
 sessOptions.hosts = process.env.SESSION_STORE ? [process.env.SESSION_STORE] : config.session.hosts;
 
 exports.clientOptions = clientOptions;
-exports.sassOptions = sassOptions;
 exports.sessOptions = sessOptions;
