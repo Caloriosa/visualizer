@@ -1,7 +1,7 @@
 <template>
-    <div id="dashboard" class="container">
+    <div id="dashboard" class="container mt-4">
         <div v-if="loaded">
-            <h2>{{ msg }}</h2>
+            <h2>Welcome, {{ user.name ? user.name : user.login }}</h2>
             <div class="row mt-4">
                 <div class="col">
                 1 of 2
@@ -28,6 +28,9 @@
                 </div>
             </div>
         </div>
+        <div v-else-if="error" class="alert alert-danger">
+            <b>An error occured:</b> {{ error }}
+        </div>
         <div v-else>
             <div class="loading text-center mt-4 mb-4">
                 <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
@@ -44,6 +47,10 @@ export default {
     return {
       msg: 'Welcome to Dashboard',
       loaded: false,
+      error: null,
+      user: {
+          name: "Anonymous"
+      },
       featuredSensor: {
           value: "0",
           title: "Sensor",
@@ -76,7 +83,7 @@ export default {
       }
   },
   async created() {
-      let response = await fetch(location, {
+      let response = await fetch("/dashboard", {
           credentials: "same-origin",
           headers: {
               "X-Requested-With": "XmlHttpRequest"
@@ -84,7 +91,11 @@ export default {
       });
       let data = await response.json();
       this.featuredSensor = data.featuredSensor;
-      this.loaded = true;
+      if (response.status != 200) {
+          this.error = data.error;
+      } else {
+        this.loaded = true;
+      }
   }
 }
 </script>

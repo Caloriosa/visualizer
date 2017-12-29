@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Dashboard from './Dashboard.vue'
 
 new Vue({
   el: '#dashboard',
-  template: '<App/>',
-  components: { App }
+  template: '<Dashboard />',
+  components: { Dashboard }
 })
 
