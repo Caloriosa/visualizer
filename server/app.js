@@ -19,7 +19,6 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
 var devices = require('./routes/devices');
-var payload = require('./routes/payload');
 
 var logger = log4js.getLogger();
 var accessLogger = log4js.getLogger("Access");
@@ -66,7 +65,6 @@ app.use('/', index);
 app.use('/', user);
 app.use('/', devices);
 app.use('/sign', login);
-app.use('/payload', payload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

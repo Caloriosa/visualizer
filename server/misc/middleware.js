@@ -21,6 +21,11 @@ function createClient(clientOptions = {}, token = null) {
 
 exports.isAuthenticated = function isAuthenticated(req, res, next ){
     if (!res.locals.loggedUser) {
+        if (req.xhr) {
+            res.status(401);
+            res.send({error: "Unauthorized!"});
+            return;
+        }
         req.session.backlink = req.originalUrl;
         res.redirect("/sign/in");
         return;
