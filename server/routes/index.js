@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home sensor measuring'});
 });
 
-router.get('/dashboard', isAuthenticated, xhrDashboard, function(req, res, next) {
+router.get('/dashboard', /*isAuthenticated,*/ xhrDashboard, function(req, res, next) {
   res.render('dashboard', { title: 'Dashboard'});
 });
 

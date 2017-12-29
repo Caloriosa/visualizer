@@ -41,11 +41,13 @@
 </template>
 
 <script>
+import { UserService } from '@caloriosa/rest-dto'
+
 export default {
   name: 'dashboard',
   data () {
     return {
-      msg: 'Welcome to Dashboard',
+      userService: null,
       loaded: false,
       error: null,
       user: {
@@ -80,22 +82,19 @@ export default {
             }
           }
           return icons[this.featuredSensor.type][what];
+      },
+      fetchData() {
+        this.$api.users.fetchMe().then(me => {
+            this.user = me;
+        }).catch(err => {
+            this.error = err.message;
+        });
       }
   },
-  async created() {
-      let response = await fetch("/dashboard", {
-          credentials: "same-origin",
-          headers: {
-              "X-Requested-With": "XmlHttpRequest"
-          }
-      });
-      let data = await response.json();
-      this.featuredSensor = data.featuredSensor;
-      if (response.status != 200) {
-          this.error = data.error;
-      } else {
-        this.loaded = true;
-      }
+  created() {
+  },
+  mounted() {
+      this.fetchData();
   }
 }
 </script>
